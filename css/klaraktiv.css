@@ -1,0 +1,27 @@
+body{
+    background-color:#5286F3;
+    font-size:14px;
+    color:#fff;
+}
+.klaraktiv-container{
+    width:300px;
+    max-width:100%;
+    margin:50px auto;
+   
+}
+.klaraktiv-container h2{
+    text-align:center;
+    font-size:20px;
+}
+.klaraktiv-container h1{
+    text-align:center;
+    font-size:28px;
+}
+.klaraktiv-container .btn-klaraktiv{
+    background-color:#005da8;
+    color:#fff;
+    text-emphasis-color:#f29400;
+}
+a{
+    color:#fff;
+}
