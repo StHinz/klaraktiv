@@ -14,6 +14,17 @@
 
 <body>
 
+<!-- failed login -->
+
+<?php
+if(isset($_GET['abgewiesen']))
+{
+ echo "
+  <div class='alert alert-danger' role='alert'>
+  <strong>Achtung!</strong> Anmeldung fehlgeschlagen! Versuchen Sie es erneut!
+</div>";
+}
+?>
 
 <!-- Login -->
 <div class="klaraktiv-container">

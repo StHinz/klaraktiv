@@ -25,12 +25,17 @@
     </div>
 </div>
 <h1>Klaraktiv-Tag</h1>
-<div class="btn-group-vertical">
+<div class="btn-group-vertical col-md-12">
 <a href="#" class="btn btn-klaraktiv" role="button" aria-disabled="true">Übersicht</a></br>
 <a href="#" class="btn btn-klaraktiv" role="button" aria-disabled="true">Punkte vergeben</a></br>
-<a href="#" class="btn btn-klaraktiv" role="button" aria-disabled="true">Klassen anlegen</a></br>
-<a href="#" class="btn btn-klaraktiv" role="button" aria-disabled="true">Stationen anlegen</a></br>
-<a href="../controller/logout.php" class="btn btn-klaraktiv" role="button" aria-disabled="true">Logout</a>
+<?php 
+if($role ==  'admin') {
+    echo "
+<a href='#' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Teilnehmerverwaltung</a></br>
+<a href='#' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Stationsverwaltung</a></br>";
+}
+?>
+<a href='../controller/logout.php' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Logout</a>
 </div>
 
 </div>
