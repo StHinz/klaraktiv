@@ -10,6 +10,7 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <title>klaraktiv - Übersicht</title>
@@ -31,7 +32,7 @@
 <?php 
 if($role ==  'admin') {
     echo "
-<a href='#' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Teilnehmerverwaltung</a></br>
+<a href='./attendees.php' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Teilnehmerverwaltung</a></br>
 <a href='#' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Stationsverwaltung</a></br>";
 }
 ?>
