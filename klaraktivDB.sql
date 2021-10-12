@@ -30,7 +30,7 @@ INSERT INTO class VALUES(1,"12FI1");
 
 CREATE TABLE IF NOT EXISTS student (
 studentid INT auto_increment PRIMARY KEY,
-studentnumber varchar(12),
+studentnumber varchar(12) unique,
 classid int,
 roleid int,
 FOREIGN KEY(classid) REFERENCES class(classid),
@@ -65,3 +65,8 @@ INSERT INTO student_station VALUES(3,1,3,now());
 INSERT INTO student_station VALUES(null,2,3,now());
 
 
+Select * from class;
+
+SELECT * from student;
+
+DELETE FROM Student;

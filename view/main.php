@@ -27,16 +27,16 @@
 </div>
 <h1>Klaraktiv-Tag</h1>
 <div class="btn-group-vertical col-md-12">
-<a href="#" class="btn btn-klaraktiv" role="button" aria-disabled="true">Übersicht</a></br>
-<a href="#" class="btn btn-klaraktiv" role="button" aria-disabled="true">Punkte vergeben</a></br>
+<a href="#" class="btn btn-info" role="button" aria-disabled="true">Übersicht</a></br>
+<a href="./awardpoints.php" class="btn btn-success" role="button" aria-disabled="true">Punkte vergeben</a></br>
 <?php 
 if($role ==  'admin') {
     echo "
-<a href='./attendees.php' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Teilnehmerverwaltung</a></br>
-<a href='#' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Stationsverwaltung</a></br>";
+<a href='./attendees.php' class='btn btn-warning' role='button' aria-disabled='true'>Teilnehmerverwaltung</a></br>
+<a href='./station.php' class='btn btn-warning' role='button' aria-disabled='true'>Stationsverwaltung</a></br>";
 }
 ?>
-<a href='../controller/logout.php' class='btn btn-klaraktiv' role='button' aria-disabled='true'>Logout</a>
+<a href='../controller/logout.php' class='btn btn-danger' role='button' aria-disabled='true'>Logout</a>
 </div>
 
 </div>

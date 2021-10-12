@@ -30,6 +30,13 @@ body{
     color:#fff;
     text-emphasis-color:#f29400;
 }
+
+.klaraktiv-container .btn-save{
+    background-color: #009b00;
+    /*color:#fff;
+    text-emphasis-color:#f29400;*/
+}
+
 a{
     color:#fff;
 }
