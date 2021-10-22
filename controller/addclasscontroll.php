@@ -31,12 +31,12 @@ for ($i=1; $i <= $getNumberOfStudents; $i++) {
     $genStudentNumber = rand(111111,999999);
     $classID = $classGet[0]['classid'];
     
-    $insertStudent = $db->insertRow("INSERT INTO student VALUES (NULL,'$genStudentNumber','$classID',3)");
+    $insertStudent = $db->insertRow("INSERT INTO student VALUES (NULL,'$genStudentNumber',1,'$classID',3)");
 
 }
 
 
 // back to site
-header("location:../view/attendees.php");
+header("location:../view/attendees.php?success=true");
 
 ?>

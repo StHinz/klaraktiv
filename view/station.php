@@ -7,6 +7,22 @@ if(isset($_GET['abgewiesen']))
 </div>";
 }
 
+if(isset($_GET['success']))
+{
+ echo "
+ <div class='alert alert-success alert-dismissible fade show' role='alert'>
+  Station wurde hinzugefügt bzw. geändert!
+</div>";
+}
+
+if(isset($_GET['delete']))
+{
+ echo "
+ <div class='alert alert-success alert-dismissible fade show' role='alert'>
+  Station wurde gelöscht!
+</div>";
+}
+
 ?>
 
 <html>
@@ -61,9 +77,9 @@ foreach ($getAllstations as $row) {
     echo "<td>".$row['points']."</td>";
     echo "<td>
     <form action='../controller/deletestation.php' method='POST'><input type='hidden' name='stationid' value=".$row['stationid'].">
-    <button class='btn btn-sm btn-block btn-danger'>löschen</button></br>
-    <form action='#' method='POST'><input type='hidden' name='stationid' value=".$row['stationid'].">
-    <button class='btn btn-sm btn-block btn-success'>bearbeiten</button>
+    <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>
+    <form action='./updatestation.php' method='POST'><input type='hidden' name='stationid' value=".$row['stationid'].">
+    <button class='btn btn-sm btn-block btn-success'>bearbeiten</button></form>
     </td>";
 
 }

@@ -19,7 +19,7 @@ if(empty($stationGetFromDB)) {
     $insertStation = $db->insertRow("INSERT INTO station VALUES(NULL,'$getStation','$getPoints')");
     
     // back to site
-    header("location:../view/station.php");
+    header("location:../view/station.php?success=true");
     
 } else {
 

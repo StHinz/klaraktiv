@@ -1,0 +1,102 @@
+<?php 
+require "../session.inc.php"; 
+require "../Controller/overviewcontroller.php";
+
+$dataPointsclass = $data_points_class;
+$dataPointsstudents = $data_points_students;
+
+?>
+
+<html>
+<head>
+
+<!-- CSS klaraktiv -->
+<link rel="stylesheet" href="../css/klaraktiv.css">
+
+<!-- bootstrap css -->
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Chart -->
+<script>
+window.onload = function() {
+ 
+
+var chartclass = new CanvasJS.Chart("chartContainerclass", {
+	animationEnabled: true,
+	exportEnabled: false,
+  	theme: "light2",
+	title:{
+		text: "Beste Klasse"
+	},
+	axisY: {
+		title: "Punkte",
+		includeZero: true,
+		//prefix: "",
+		//suffix:  ""
+	},
+	data: [{
+		type: "bar",
+		yValueFormatString: "### P",
+		indexLabel: "{y}",
+		indexLabelPlacement: "inside",
+		indexLabelFontWeight: "bolder",
+		indexLabelFontColor: "white",
+		dataPoints: <?php echo json_encode($dataPointsclass, JSON_NUMERIC_CHECK); ?>
+  }]
+});
+
+
+var chartstudents = new CanvasJS.Chart("chartContainerstudents", {
+	animationEnabled: true,
+	exportEnabled: false,
+  	theme: "light2",
+	title:{
+		text: "Beste Schüler"
+	},
+	axisY: {
+		title: "Punkte",
+		includeZero: true,
+		//prefix: "",
+		//suffix:  ""
+	},
+	data: [{
+		type: "bar",
+		yValueFormatString: "### P",
+		indexLabel: "{y}",
+		indexLabelPlacement: "inside",
+		indexLabelFontWeight: "bolder",
+		indexLabelFontColor: "white",
+		dataPoints: <?php echo json_encode($dataPointsstudents, JSON_NUMERIC_CHECK); ?>
+  }]
+});	
+
+chartclass.render();
+chartstudents.render();	
+}
+</script>
+
+</head>
+
+<title>klaraktiv - Übersicht</title>
+
+<body>
+
+
+<div class="klaraktiv-container">
+
+<div class="row">
+    <div class="col-md-12 form-group">
+    <img src="../img/logo.png" alt="klaraoppenheimer" height="100%" width="100%">
+    </div>
+    <div class="btn-group-vertical col-md-12">
+    <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a></br>
+    </div>  
+</div>
+</div>
+<div id="chartContainerclass" style="height: 370px; width: 100%;"></div>
+<div id="chartContainerstudents" style="height: 370px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</body>
+</html>     

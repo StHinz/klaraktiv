@@ -15,7 +15,7 @@ $deletstudent = $db->deleteRow("DELETE FROM station WHERE stationid = '$getStati
 
 
 // back to site
-header("location:../view/station.php");
+header("location:../view/station.php?delete=true");
 
 } catch (Exception $e) {
     header('Location:../view/station.php?abgewiesen=true');

@@ -15,7 +15,7 @@ $deletstudent = $db->deleteRow("DELETE FROM student WHERE studentID like '$getSt
 
 
 // back to site
-header("location:../view/attendees.php");
+header("location:../view/attendees.php?delete=true");
 } catch (Exception $e) {
     
     header('Location:../view/attendees.php?abgewiesen=true');

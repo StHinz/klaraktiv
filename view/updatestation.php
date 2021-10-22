@@ -2,14 +2,6 @@
 
 require "../session.inc.php"; 
 require "../controller/datacontroll.php"; 
-if(isset($_GET['abgewiesen']))
-{
- echo "
- <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <strong>Achtung!</strong> Station existiert bereits!
-</div>";
-}
-
 
 
 ?>
@@ -43,22 +35,35 @@ if(isset($_GET['abgewiesen']))
 
 
 <!-- Form -->
-<!-- Add Station -->
-<form name="addclass" action="../controller/addstationcontroller.php" method="post">
-  
+<?php 
+$getStationID = $_POST['stationid'];
+$getStationFromDB = $db->getRows("SELECT stationname FROM station WHERE stationid like '$getStationID'");
+$getStationPoints = $db->getRows("SELECT points FROM station WHERE stationid like '$getStationID'");
+?> 
+
+
+<!-- Update Station -->
+<form name="updatestation" action="../controller/updatestationcontroller.php" method="post">
+
+<input type="hidden" name="stationid" value="<?php echo $getStationID;?>">
+
 <div class="form-group">
-    <label for="formGroupExampleInput">Station</label>
-    <input type="text" class="form-control" placeholder="Bezeichnung" name='station'>
+    <label for="formGroupExampleInput">Station bearbeiten</label>
+    <input type="text" class="form-control" placeholder="Bezeichnung" name='stationname' value="<?php echo $getStationFromDB[0]['stationname'] ?>">
 </div>
 
-<!-- add points -->
+<!-- Update points -->
   <div class="form-group">
     <label for="exampleFormControlSelect1">Punkte</label>
     <select class="form-control" name='points'>
       <?php
          for($i=1; $i <11; $i++) {
-        echo '<option>'.$i.'</option>';
-        }
+           if($i == $getStationPoints[0]['points']) {
+             echo '<option selected>'.$getStationPoints[0]['points'].'</option>';
+              } else {
+                echo '<option>'.$i.'</option>';
+             }
+          }
         ?>
     </select>
   </div>
@@ -67,7 +72,7 @@ if(isset($_GET['abgewiesen']))
   <div class='form-group'>
         <input class="btn btn-success btn-block" type="submit" value="Speichern"></br>
         <input class="btn btn-warning  btn-block" type="reset" value="Zurücksetzen"></br>
-        <a href="./main.php" class="btn btn-block" style='background-color: #557BB2; color: #FFFFFF' role="button" aria-pressed="true">Abbrechen</a> 
+        <a href="./station.php" class="btn btn-block" style='background-color: #557BB2; color: #FFFFFF' role="button" aria-pressed="true">Abbrechen</a> 
   </div>
 
 </form>

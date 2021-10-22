@@ -25,9 +25,9 @@
     <img src="../img/logo.png" alt="klaraoppenheimer" height="100%" width="100%">
     </div>
 </div>
-<h1>Klaraktiv-Tag</h1>
+<h1>KlarAktiv-Tag</h1>
 <div class="btn-group-vertical col-md-12">
-<a href="#" class="btn btn-info" role="button" aria-disabled="true">Übersicht</a></br>
+<a href="./overview.php" class="btn btn-info" role="button" aria-disabled="true">Übersicht</a></br>
 <a href="./awardpoints.php" class="btn btn-success" role="button" aria-disabled="true">Punkte vergeben</a></br>
 <?php 
 if($role ==  'admin') {
@@ -38,6 +38,8 @@ if($role ==  'admin') {
 ?>
 <a href='../controller/logout.php' class='btn btn-danger' role='button' aria-disabled='true'>Logout</a>
 </div>
+
+
 
 </div>
 

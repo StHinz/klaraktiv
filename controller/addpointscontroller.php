@@ -12,6 +12,7 @@ $getStation = $_POST['station'];
 $getStudentFromDB = $db->countRows("SELECT studentid FROM student WHERE studentnumber like '$getStudent'");
 $getStudentIDFromDB = $db->getRows("SELECT studentid FROM student WHERE studentnumber like '$getStudent'");
 $getStationIDFromDB = $db->getRows("SELECT stationid FROM station WHERE stationname like '$getStation'");
+$getStatusFromDB = $db->getRows("SELECT studentstatus FROM student WHERE studentnumber like '$getStudent'");
 
 
 // Check if Student exists
@@ -21,6 +22,8 @@ if($getStudentFromDB == 0) {
 
 } else {
 
+if($getStatusFromDB[0]['studentstatus'] == 1) {
+
 // Insert Points for student 
 $studentid = $getStudentIDFromDB[0]['studentid'];
 $stationid = $getStationIDFromDB[0]['stationid']; 
@@ -29,9 +32,13 @@ $insertPointsStudent = $db->insertRow("INSERT INTO student_station VALUES (NULL,
 
 
 // back to site
-header("location:../view/awardpoints.php");
+header("location:../view/awardpoints.php?success=true");
 
 
-}
+} else {
+
+   header('Location:../view/awardpoints.php?status=false');
+
+} }
 
 ?>

@@ -31,14 +31,15 @@ INSERT INTO class VALUES(1,"12FI1");
 CREATE TABLE IF NOT EXISTS student (
 studentid INT auto_increment PRIMARY KEY,
 studentnumber varchar(12) unique,
+studentstatus tinyint,
 classid int,
 roleid int,
 FOREIGN KEY(classid) REFERENCES class(classid),
 FOREIGN KEY(roleid) REFERENCES role(roleiD)
 );
 
-INSERT INTO student VALUES(1,"761134",1,3);
-INSERT INTO student VALUES(2,"543329",1,3);
+INSERT INTO student VALUES(1,"761134",1,1,3);
+INSERT INTO student VALUES(2,"543329",1,1,3);
 
 CREATE TABLE IF NOT EXISTS station (
 stationid int auto_increment PRIMARY KEY,
@@ -64,9 +65,6 @@ INSERT INTO student_station VALUES(2,1,2,now());
 INSERT INTO student_station VALUES(3,1,3,now());
 INSERT INTO student_station VALUES(null,2,3,now());
 
-
-Select * from class;
-
-SELECT * from student;
-
-DELETE FROM Student;
+SELECT student.studentid, studentnumber, classname, SUM(points) AS points, studentstatus FROM student LEFT JOIN class ON student.classid = class.classid LEFT JOIN 
+student_station ON student.studentid = student_station.studentid LEFT JOIN station ON student_station.stationid = station.stationid
+GROUP BY student.studentid;

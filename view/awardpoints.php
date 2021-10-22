@@ -11,6 +11,21 @@ if(isset($_GET['abgewiesen']))
 </div>";
 }
 
+if(isset($_GET['status']))
+{
+ echo "
+ <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <strong>Achtung!</strong> Schüler wurde vom Admin deaktiviert!
+</div>";
+}
+
+if(isset($_GET['success']))
+{
+ echo "
+ <div class='alert alert-success alert-dismissible fade show' role='alert'>
+  Punkte wurden vergeben!
+</div>";
+}
 
 ?>
 <html>
