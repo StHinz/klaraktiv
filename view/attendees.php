@@ -7,7 +7,7 @@ if(isset($_GET['abgewiesen']))
 {
  echo "
  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <strong>Achtung!</strong> Schüler kann nicht gelöscht werden, da er bereits Punkte erworben hat!
+  <strong>Achtung!</strong> Schüler kann nicht gelöscht werden, da er/sie bereits Punkte erworben hat!
 </div>";
 }
 
@@ -15,7 +15,7 @@ if(isset($_GET['delete']))
 {
  echo "
  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-  Schüler wurde gelöscht!
+  Schüler*In wurde gelöscht!
 </div>";
 }
 
@@ -23,7 +23,7 @@ if(isset($_GET['success']))
 {
  echo "
  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-  Schüler wurden hinzugefügt!
+  Schüler*In wurden hinzugefügt!
 </div>";
 }
 ?>
@@ -43,8 +43,33 @@ if(isset($_GET['success']))
 <!-- Datatables -->
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
+<link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
+
+  
 
 <script>
 $(document).ready( function () {
@@ -56,33 +81,38 @@ $(document).ready( function () {
       responsive: true,
         select: true,    	
     
-        dom: '<Blf<t>ip>',
+        dom: '<Bf<t>lp>',
+       
 
         lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50,100,"Alle"] ] ,
 
         buttons: [
           {
-            extend: 'print',
-            text: '<i class="fa fa-print"></i>',
-  
-          },
-          {
             extend: 'copy',
-            text: '<i class="fa fa-files-o"></i>',
-            
-          },
+            text: '<i class="fas fa-copy"></i>',
+            exportOptions: {
+                    columns: [ 1, 2 ]
+                }
+        },
           {
             extend: 'excelHtml5',
-            text: '<i class="fa fa-file-excel-o"></i>',
+            text: '<i class="fas fa-file-excel"></i>',
             autoFilter: true,
-            sheetName: 'Notenarchiv'
+            sheetName: 'Teilnehmer KlarAktiv-Tag',
+            exportOptions: {
+                    columns: [ 1, 2 ]
+                }
         },
           {
             extend: 'pdfHtml5',
-            text: '<i class="fa fa-file-pdf-o"></i>',
+            text: '<i class="fas fa-file-pdf"></i>',
             orientation: 'landscape',
-            pageSize: 'EXECUTIVE'
-          },
+            pageSize: 'EXECUTIVE',
+            exportOptions: {
+                    columns: [ 1, 2 ]
+                }
+          }
+    
            
         ]
   } );
@@ -117,14 +147,15 @@ $(document).ready( function () {
 </div>
 
 
-<!-- table -->
-<div class="row">
-<div class="col-md-16 form-group">
 
+<!-- table -->
+
+<div class="row">
+<div class="col-lg-48">
 <?php
 
 echo "<div class='table-responsive table-xl'>
-<table id='attendeestable' class ='table table-hover' width='100%'>
+<table id='attendeestable' class ='table table-hover' width='auto'>
 <thead>
 <tr>
 <th>ID</th>
@@ -177,6 +208,7 @@ echo "</tr></table></div>";
 
 ?>
 
+</div>
 </div>
 </div>
 

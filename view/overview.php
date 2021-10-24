@@ -31,14 +31,14 @@ var chartclass = new CanvasJS.Chart("chartContainerclass", {
 		text: "Beste Klasse"
 	},
 	axisY: {
-		title: "Punkte",
+		title: "Durchschnittspunkte",
 		includeZero: true,
 		//prefix: "",
 		//suffix:  ""
 	},
 	data: [{
 		type: "bar",
-		yValueFormatString: "### P",
+		yValueFormatString: "#.## P",
 		indexLabel: "{y}",
 		indexLabelPlacement: "inside",
 		indexLabelFontWeight: "bolder",
@@ -53,10 +53,10 @@ var chartstudents = new CanvasJS.Chart("chartContainerstudents", {
 	exportEnabled: false,
   	theme: "light2",
 	title:{
-		text: "Beste Schüler"
+		text: "Beste Schülerinnen und Schüler"
 	},
 	axisY: {
-		title: "Punkte",
+		title: "Absolutpunkte",
 		includeZero: true,
 		//prefix: "",
 		//suffix:  ""
@@ -95,8 +95,12 @@ chartstudents.render();
     </div>  
 </div>
 </div>
-<div id="chartContainerclass" style="height: 370px; width: 100%;"></div>
-<div id="chartContainerstudents" style="height: 370px; width: 100%;"></div>
+
+<div id="chartContainerclass" style="height: 370px; width: 80%; margin-left: auto;
+    margin-right: auto"></div>
+<div id="chartContainerstudents" style="height: 370px; width: 80%; margin-left: auto;
+    margin-right: auto; padding-top: 100px"></div>
+
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 </body>
 </html>     

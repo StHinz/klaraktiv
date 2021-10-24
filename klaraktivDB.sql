@@ -18,7 +18,7 @@ roleid int,
 FOREIGN KEY(roleid) REFERENCES role(roleid)
 );
 
-insert into  user VALUES(NULL,"teacheradmin", MD5("test"),1),(NULL,"teacher", MD5("test"),2); 
+insert into  user VALUES(NULL,"teacheradmin", MD5("test"),1),(NULL,"teacher1", MD5("test"),2); 
 
 CREATE TABLE IF NOT EXISTS class (
 classid int auto_increment PRIMARY KEY,
@@ -65,6 +65,4 @@ INSERT INTO student_station VALUES(2,1,2,now());
 INSERT INTO student_station VALUES(3,1,3,now());
 INSERT INTO student_station VALUES(null,2,3,now());
 
-SELECT student.studentid, studentnumber, classname, SUM(points) AS points, studentstatus FROM student LEFT JOIN class ON student.classid = class.classid LEFT JOIN 
-student_station ON student.studentid = student_station.studentid LEFT JOIN station ON student_station.stationid = station.stationid
-GROUP BY student.studentid;
+

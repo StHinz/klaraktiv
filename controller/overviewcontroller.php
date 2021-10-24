@@ -6,9 +6,12 @@ $db = new Database();
 // Best Class
 $data_points_class = array();
    
-$getBestClass = $db->getRows("SELECT classname, SUM(points) as summe FROM class JOIN student ON class.classid = student.classid JOIN student_station 
-ON student.studentid = student_station.studentid JOIN station ON station.stationid = student_station.stationid
-GROUP BY 1 ORDER BY summe DESC LIMIT 5;");
+$getBestClass = $db->getRows("SELECT class.classname, sum(Points)/count(distinct student_station.studentid) as summe from student_station 
+JOIN station ON student_station.stationid = station.stationid
+JOIN student ON student_station.studentid = student.studentid
+JOIN class ON student.classid = class.classid
+WHERE student.studentstatus = 1
+group by student.classid ORDER BY summe DESC LIMIT 5;");
  
 
      foreach($getBestClass as $row)
