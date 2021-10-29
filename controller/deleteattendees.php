@@ -1,7 +1,7 @@
 
 <?php
 
-require '../Model/database.php';
+require '../Model/deletedb.php';
 
 $db =  new Database();
 
@@ -9,16 +9,8 @@ $db =  new Database();
 $getStudentid = $_POST['studentid'];
 
 // delete student
-try {
-$deletstudent = $db->deleteRow("DELETE FROM student WHERE studentID like '$getStudentid'");
 
+$deletstudent = new deletedb();
+$deletstudent->deletestudent($getStudentid);
 
-
-// back to site
-header("location:../view/attendees.php?delete=true");
-} catch (Exception $e) {
-    
-    header('Location:../view/attendees.php?abgewiesen=true');
-
-}
 ?>

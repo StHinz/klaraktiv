@@ -1,9 +1,13 @@
 <?php 
 require "../session.inc.php"; 
-require "../Controller/overviewcontroller.php";
+//require "../Controller/overviewcontroller.php";
+require "../Controller/selectcontroller.php";
 
-$dataPointsclass = $data_points_class;
-$dataPointsstudents = $data_points_students;
+//$dataPointsclass = $data_points_class;
+//$dataPointsstudents = $data_points_students;
+
+$dataPoints = new selectcontroller();
+
 
 ?>
 
@@ -43,7 +47,7 @@ var chartclass = new CanvasJS.Chart("chartContainerclass", {
 		indexLabelPlacement: "inside",
 		indexLabelFontWeight: "bolder",
 		indexLabelFontColor: "white",
-		dataPoints: <?php echo json_encode($dataPointsclass, JSON_NUMERIC_CHECK); ?>
+		dataPoints: <?php echo json_encode($dataPoints->getBestClass(), JSON_NUMERIC_CHECK); ?>
   }]
 });
 
@@ -68,7 +72,7 @@ var chartstudents = new CanvasJS.Chart("chartContainerstudents", {
 		indexLabelPlacement: "inside",
 		indexLabelFontWeight: "bolder",
 		indexLabelFontColor: "white",
-		dataPoints: <?php echo json_encode($dataPointsstudents, JSON_NUMERIC_CHECK); ?>
+		dataPoints: <?php echo json_encode($dataPoints->getBestStudent(), JSON_NUMERIC_CHECK); ?>
   }]
 });	
 

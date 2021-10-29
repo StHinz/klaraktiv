@@ -1,7 +1,7 @@
 <?php 
 
 require "../session.inc.php"; 
-require "../controller/datacontroll.php"; 
+require "../controller/selectcontroller.php"; 
 
 
 ?>
@@ -18,7 +18,7 @@ require "../controller/datacontroll.php";
 
 </head>
 
-<title>klaraktiv - Station hinzufügen</title>
+<title>klaraktiv - Station bearbeiten</title>
 
 <body>
 <!-- Logo KOS -->
@@ -36,20 +36,21 @@ require "../controller/datacontroll.php";
 
 <!-- Form -->
 <?php 
-$getStationID = $_POST['stationid'];
-$getStationFromDB = $db->getRows("SELECT stationname FROM station WHERE stationid like '$getStationID'");
-$getStationPoints = $db->getRows("SELECT points FROM station WHERE stationid like '$getStationID'");
+$getStationID = new selectcontroller();
+
+$station = $getStationID->getSingelStation($_POST['stationid']);
+
 ?> 
 
 
 <!-- Update Station -->
 <form name="updatestation" action="../controller/updatestationcontroller.php" method="post">
 
-<input type="hidden" name="stationid" value="<?php echo $getStationID;?>">
+<input type="hidden" name="stationid" value="<?php echo $station[0]['stationid'];?>">
 
 <div class="form-group">
     <label for="formGroupExampleInput">Station bearbeiten</label>
-    <input type="text" class="form-control" placeholder="Bezeichnung" name='stationname' value="<?php echo $getStationFromDB[0]['stationname'] ?>">
+    <input type="text" class="form-control" placeholder="Bezeichnung" name='stationname' value="<?php echo $station[0]['stationname'] ?>">
 </div>
 
 <!-- Update points -->
@@ -58,8 +59,8 @@ $getStationPoints = $db->getRows("SELECT points FROM station WHERE stationid lik
     <select class="form-control" name='points'>
       <?php
          for($i=1; $i <11; $i++) {
-           if($i == $getStationPoints[0]['points']) {
-             echo '<option selected>'.$getStationPoints[0]['points'].'</option>';
+           if($i == $station[0]['points']) {
+             echo '<option selected>'.$station[0]['points'].'</option>';
               } else {
                 echo '<option>'.$i.'</option>';
              }

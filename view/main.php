@@ -30,10 +30,15 @@
 <a href="./overview.php" class="btn btn-info" role="button" aria-disabled="true">Übersicht</a></br>
 <a href="./awardpoints.php" class="btn btn-success" role="button" aria-disabled="true">Punkte vergeben</a></br>
 <?php 
-if($role ==  'admin') {
+if($role ==  'Admin' || $role == 'Superadmin') {
     echo "
 <a href='./attendees.php' class='btn btn-warning' role='button' aria-disabled='true'>Teilnehmerverwaltung</a></br>
 <a href='./station.php' class='btn btn-warning' role='button' aria-disabled='true'>Stationsverwaltung</a></br>";
+}
+if($role == 'Superadmin') {
+ echo "   
+ <a href='./user.php' class='btn btn-warning' role='button' aria-disabled='true'>Nutzerverwaltung</a></br>
+";
 }
 ?>
 <a href='../controller/logout.php' class='btn btn-danger' role='button' aria-disabled='true'>Logout</a>

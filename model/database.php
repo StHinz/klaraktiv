@@ -60,8 +60,8 @@ public function countRows($query, $params = []){
 
 }
 
-// insert row - Data
-public function insertRow($query, $params=[]){
+// update - delete - insert Row
+public function updateRow($query, $params=[]){
     try{ 
         $stmt = $this->datab->prepare($query); 
         $stmt->execute($params);
@@ -73,36 +73,5 @@ public function insertRow($query, $params=[]){
 }
 
 
-
-//delete row - Data
-public function deleteRow($query, $params=[]){
-    try {
-
-        $stmt = $this->datab->prepare($query);
-        $stmt->execute($params);
-        }
-
-    catch(PDOException $e) {
-
-        throw new Exception($e->getMessage());
-    }
-
- }
-    
-
-// update row - Data
-public function updateRow($query, $params=[]){
-    try {
-
-        $stmt = $this->datab->prepare($query);
-        $stmt->execute($params);
-        }
-
-    catch(PDOException $e) {
-
-        throw new Exception($e->getMessage());
-    }
-
- }
 }
 ?>

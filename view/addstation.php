@@ -1,7 +1,8 @@
 <?php 
 
 require "../session.inc.php"; 
-require "../controller/datacontroll.php"; 
+ 
+
 if(isset($_GET['abgewiesen']))
 {
  echo "
@@ -10,6 +11,13 @@ if(isset($_GET['abgewiesen']))
 </div>";
 }
 
+if(isset($_GET['empty']))
+{
+ echo "
+ <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <b>Achtung!</b> Es muss ein Stationsname angegeben werden! Versuchen Sie es erneut! 
+</div>";
+}
 
 
 ?>

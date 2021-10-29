@@ -1,6 +1,17 @@
 <?php 
 require "../session.inc.php"; 
-require "../controller/datacontroll.php";
+
+
+
+if(isset($_GET['empty']))
+{
+ echo "
+ <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <b>Achtung!</b> Es muss ein Klassenname angegeben werden! Versuchen Sie es erneut! 
+</div>";
+}
+
+
  ?>
 
 <html>
@@ -33,7 +44,7 @@ require "../controller/datacontroll.php";
 
 <!-- Form -->
 <!-- Add classname -->
-<form name="addclass" action="../controller/addclasscontroll.php" method="post">
+<form name="addclass" action="../controller/addclasscontroller.php" method="post">
   
 <div class="form-group">
     <label for="formGroupExampleInput">Klasse</label>

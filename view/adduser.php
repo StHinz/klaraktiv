@@ -1,29 +1,13 @@
 <?php 
 
 require "../session.inc.php"; 
-require "../controller/datacontroll.php"; 
+require "../controller/selectcontroller.php"; 
 
 if(isset($_GET['abgewiesen']))
 {
  echo "
  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <strong>Achtung!</strong> Schülernummer falsch! Versuchen Sie es erneut!
-</div>";
-}
-
-if(isset($_GET['status']))
-{
- echo "
- <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <strong>Achtung!</strong> Schüler wurde vom Admin deaktiviert!
-</div>";
-}
-
-if(isset($_GET['success']))
-{
- echo "
- <div class='alert alert-success alert-dismissible fade show' role='alert'>
-  Punkte wurden vergeben!
+  <strong>Achtung!</strong> Nutzer existiert bereits! Geben Sie einen anderen Nutzernamen an.
 </div>";
 }
 
@@ -31,9 +15,10 @@ if(isset($_GET['empty']))
 {
  echo "
  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <b>Achtung!</b> Es muss eine Schülernummer angegeben werden! Versuchen Sie es erneut! 
+  <b>Achtung!</b> Es muss ein Nutzername, Password und Rolle angegeben werden! Versuchen Sie es erneut! 
 </div>";
 }
+
 
 ?>
 <html>
@@ -49,7 +34,7 @@ if(isset($_GET['empty']))
 
 </head>
 
-<title>klaraktiv - Punkte vergeben</title>
+<title>klaraktiv - Nutzer hinzufügen</title>
 
 <body>
 <!-- Logo KOS -->
@@ -64,26 +49,34 @@ if(isset($_GET['empty']))
     </div>  
 </div>
 
+
 <!-- Form -->
-<!-- add student -->
-<form name="addpoints" action="../controller/addpointscontroller.php" method="post">
-  <div class="form-group">
-    <label for="formGroupExampleInput">Schülernummer</label>
-    <input type="text" class="form-control" placeholder="Schülernummer" name='student'>
+<!-- Add Username -->
+<form name="adduser" action="../controller/addusercontroller.php" method="post">
+  
+<div class="form-group">
+    <label for="formGroupExampleInput">Nutzer</label>
+    <input type="text" class="form-control" placeholder="Nutzername" name='username'>
+</div>
+
+<!-- add passwort -->
+
+<div class="form-group">
+    <label for="formGroupExampleInput">Passwort</label>
+    <input type="password" class="form-control" placeholder="Passwort eingeben" name='password'>
+</div>
+
+<!-- add role -->
+
+<div class="form-group">
+    <label for="exampleFormControlSelect1">Rolle</label>
+    <select class="form-control" name='rolename'>
+      <option></option>
+      <option>Admin</option>
+      <option>Lehrer</option>
+  </select>
   </div>
 
-<!-- add station -->
-<div class="form-group">	
-<label class="my-1 mr-2" for="inlineFormCustomSelectPref">Station</label>
-  <select class="form-control" name='station'>
-    <option></option>
-    <?php
-      foreach($getAllstations as $rows) {
-        echo '<option>'.$rows['stationname'].'</option>';
-      }
-    ?>
-  </select>
-</div>
 
 <!-- Buttons -->
   <div class='form-group'>

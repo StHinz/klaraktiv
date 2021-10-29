@@ -1,33 +1,27 @@
 
 <?php
 
-require '../Model/database.php';
+require '../Model/insertdb.php';
 
-$db =  new Database();
+
 
 // get Data from Form
 $getStation = $_POST['station'];
 $getPoints = $_POST['points'];
 
-// get DB-Entry
-$stationGetFromDB = $db->getRows("SELECT stationid FROM station WHERE stationname like '$$getStation'");
 
+if(empty($getStation) || empty($getPoints)) {
 
-// Check if Class exists, if not insert in DB
-if(empty($stationGetFromDB)) {
+     // back to site
+     header("location:../view/addstation.php?empty=true"); 
 
-    $insertStation = $db->insertRow("INSERT INTO station VALUES(NULL,'$getStation','$getPoints')");
-    
-    // back to site
-    header("location:../view/station.php?success=true");
-    
 } else {
 
-    header('Location:../view/addstation.php?abgewiesen=true');
+
+    $insterstation =  new insertdb();
+    $insterstation->addstation($getStation,$getPoints);
 
 }
-
-
 
 
 

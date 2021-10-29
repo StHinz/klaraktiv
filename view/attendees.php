@@ -1,6 +1,6 @@
 <?php 
 require "../session.inc.php"; 
-require "../controller/datacontroll.php";
+require "../controller/selectcontroller.php";
 
 //
 if(isset($_GET['abgewiesen']))
@@ -26,6 +26,9 @@ if(isset($_GET['success']))
   Schüler*In wurden hinzugefügt!
 </div>";
 }
+
+$attendees = new selectcontroller();
+$getAllattendees = $attendees->getAllAttendes();
 ?>
 
 
@@ -81,10 +84,10 @@ $(document).ready( function () {
       responsive: true,
         select: true,    	
     
-        dom: '<Bf<t>lp>',
+       dom: '<Bf<t>lp>', 
        
 
-        lengthMenu: [ [10, 25, 50, 100, -1], [10, 25, 50,100,"Alle"] ] ,
+        lengthMenu: [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100,"Alle"] ] ,
 
         buttons: [
           {
@@ -114,7 +117,7 @@ $(document).ready( function () {
           }
     
            
-        ]
+        ] 
   } );
 
     new $.fn.dataTable.FixedHeader( table );
@@ -141,7 +144,7 @@ $(document).ready( function () {
 <!-- Button -->
 <div class = "btn btn-group">
 <div class="col-md-12 from-group">
-    <a href="./class.php" class="btn btn-success" role="button" aria-disabled="true">Klasse hinzufügen</a>
+    <a href="./addclass.php" class="btn btn-success" role="button">Teilnehmer hinzufügen</a>
     <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a>
 </div>
 </div>

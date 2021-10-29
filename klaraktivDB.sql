@@ -8,7 +8,7 @@ roleid int auto_increment PRIMARY KEY,
 rolename varchar(45)
 );
 
-insert into  role VALUES(1,"admin"),(2,"lehrer"),(3,"schueler"); 
+insert into  role VALUES(1,"Superadmin"),(2,"Admin"),(3,"Lehrer"),(4,"Schueler"); 
 
 CREATE TABLE IF NOT EXISTS user (
 userid INT auto_increment PRIMARY KEY,
@@ -18,7 +18,7 @@ roleid int,
 FOREIGN KEY(roleid) REFERENCES role(roleid)
 );
 
-insert into  user VALUES(NULL,"teacheradmin", MD5("test"),1),(NULL,"teacher1", MD5("test"),2); 
+insert into  user VALUES(NULL,"programmer", MD5("test"),1), (NULL,"teacheradmin", MD5("test"),2),(NULL,"teacher1", MD5("test"),3); 
 
 CREATE TABLE IF NOT EXISTS class (
 classid int auto_increment PRIMARY KEY,
@@ -38,8 +38,8 @@ FOREIGN KEY(classid) REFERENCES class(classid),
 FOREIGN KEY(roleid) REFERENCES role(roleiD)
 );
 
-INSERT INTO student VALUES(1,"761134",1,1,3);
-INSERT INTO student VALUES(2,"543329",1,1,3);
+INSERT INTO student VALUES(1,"761134",1,1,4);
+INSERT INTO student VALUES(2,"543329",1,1,4);
 
 CREATE TABLE IF NOT EXISTS station (
 stationid int auto_increment PRIMARY KEY,
@@ -66,3 +66,10 @@ INSERT INTO student_station VALUES(3,1,3,now());
 INSERT INTO student_station VALUES(null,2,3,now());
 
 
+SELECT userid, username, rolename FROM user JOIN role ON user.roleid = role.roleid
+    WHERE rolename NOT LIKE 'Superadmin';
+
+
+SELECT MD5(userpassword) FROM user;
+
+SELECT * from user;

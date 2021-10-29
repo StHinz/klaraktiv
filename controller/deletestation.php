@@ -1,23 +1,17 @@
 
 <?php
 
-require '../Model/database.php';
+require '../Model/deletedb.php';
 
-$db =  new Database();
 
 // get Data from Form
 $getStationID = $_POST['stationid'];
 
 // delete student
-try {
-$deletstudent = $db->deleteRow("DELETE FROM station WHERE stationid = '$getStationID'");
+
+    $deletestation = new deletedb();
+    $deletestation->deletestation($getStationID);
 
 
 
-// back to site
-header("location:../view/station.php?delete=true");
-
-} catch (Exception $e) {
-    header('Location:../view/station.php?abgewiesen=true');
-}
 ?>
