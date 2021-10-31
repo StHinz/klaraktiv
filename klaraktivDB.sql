@@ -65,16 +65,7 @@ FOREIGN KEY (stationid) REFERENCES station(stationid)
 INSERT INTO student_station VALUES(NULL,1,1,now());
 INSERT INTO student_station VALUES(null,2,1,now());
 
-
 SELECT * from user;
-
-SELECT userid, username FROM user join role 
-ON role.roleid = user.roleid WHERE(rolename like 'Lehrer' OR rolename like 'Admin' OR rolename) AND userID not IN (
-SELECT user.userid from user JOIN station 
-ON user.userid = station.userid);
-
-
-
 
 
 
