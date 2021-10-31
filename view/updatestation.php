@@ -3,6 +3,21 @@
 require "../session.inc.php"; 
 require "../controller/selectcontroller.php"; 
 
+if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler') {
+
+  //Back to Page Show All
+header("location:../index.php");
+} 
+
+if(isset($_GET['empty']))
+{
+ echo "
+ <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <b>Achtung!</b> Die Station muss einen Verantwortlichen haben. Sollte kein Verantwortlicher mehr frei sein, so legen Sie einen neuen in
+  der Nutzerverwaltung an.
+</div>";
+}
+
 
 ?>
 <html>
@@ -39,6 +54,7 @@ require "../controller/selectcontroller.php";
 $getStationID = new selectcontroller();
 
 $station = $getStationID->getSingelStation($_POST['stationid']);
+$userTeacher = $getStationID->getUserTeacher();
 
 ?> 
 
@@ -49,7 +65,7 @@ $station = $getStationID->getSingelStation($_POST['stationid']);
 <input type="hidden" name="stationid" value="<?php echo $station[0]['stationid'];?>">
 
 <div class="form-group">
-    <label for="formGroupExampleInput">Station bearbeiten</label>
+    <label for="formGroupExampleInput">Station</label>
     <input type="text" class="form-control" placeholder="Bezeichnung" name='stationname' value="<?php echo $station[0]['stationname'] ?>">
 </div>
 
@@ -65,6 +81,19 @@ $station = $getStationID->getSingelStation($_POST['stationid']);
                 echo '<option>'.$i.'</option>';
              }
           }
+        ?>
+    </select>
+  </div>
+
+  <!-- Update user -->
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Verantwortlicher</label>
+    <select class="form-control" name='user'>
+      <?php
+      echo '<option selected>'.$station[0]['username'].'</option>';
+        foreach ($userTeacher as $row){
+          echo '<option>'.$row['username'].'</option>';
+        }
         ?>
     </select>
   </div>

@@ -1,7 +1,7 @@
 <?php 
 
 require "../session.inc.php"; 
-require "../controller/datacontroll.php"; 
+require "../controller/selectcontroller.php";
 
 if(isset($_GET['abgewiesen']))
 {
@@ -34,6 +34,11 @@ if(isset($_GET['empty']))
   <b>Achtung!</b> Es muss eine Schülernummer angegeben werden! Versuchen Sie es erneut! 
 </div>";
 }
+
+$getAllstations = new selectcontroller();
+$stations = $getAllstations->getAllStations();
+$userStation =$getAllstations->getStationfromUser($_SESSION['username']);
+
 
 ?>
 <html>
@@ -76,15 +81,22 @@ if(isset($_GET['empty']))
 <div class="form-group">	
 <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Station</label>
   <select class="form-control" name='station'>
-    <option></option>
     <?php
-      foreach($getAllstations as $rows) {
+      foreach($stations as $rows) {
+        if(($userStation[0]['stationname'])==($rows['stationname'])){
+          echo '<option selected>'.$rows['stationname'].'</option>';
+        } else {
         echo '<option>'.$rows['stationname'].'</option>';
       }
+    }
     ?>
   </select>
 </div>
 
+<?php
+$user= $_SESSION['username'];
+
+?>
 <!-- Buttons -->
   <div class='form-group'>
         <input class="btn btn-success btn-block" type="submit" value="Speichern"></br>

@@ -35,7 +35,7 @@ if($role ==  'Admin' || $role == 'Superadmin') {
 <a href='./attendees.php' class='btn btn-warning' role='button' aria-disabled='true'>Teilnehmerverwaltung</a></br>
 <a href='./station.php' class='btn btn-warning' role='button' aria-disabled='true'>Stationsverwaltung</a></br>";
 }
-if($role == 'Superadmin') {
+if($role == 'Superadmin' || $role == 'Admin') {
  echo "   
  <a href='./user.php' class='btn btn-warning' role='button' aria-disabled='true'>Nutzerverwaltung</a></br>
 ";

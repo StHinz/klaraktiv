@@ -9,11 +9,19 @@ require '/xampp/htdocs/klaraktiv/model/updatedb.php';
 $getStationID = $_POST['stationid'];
 $getStationName = $_POST['stationname'];
 $getPoints = $_POST['points'];
+$getUser =$_POST['user'];
+
+
+if(empty($getUser)){
+
+     // back to site
+     header("location:../view/station.php?empty=true");
+} else {
 
 $updatestation = new updatedb();
 
-$updatestation->updatestation($getStationID,$getStationName,$getPoints);
+$updatestation->updatestation($getStationID,$getStationName,$getPoints,$getUser); 
 
-
+} 
 
 ?>

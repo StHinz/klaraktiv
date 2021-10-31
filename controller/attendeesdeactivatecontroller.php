@@ -7,6 +7,7 @@ $db =  new Database();
 
 // get Data from Form
 $getStudent = $_POST['studentid'];
+
 $getStatusFromDB = $db->getRows("SELECT studentstatus FROM student WHERE studentid like '$getStudent'");
 
 

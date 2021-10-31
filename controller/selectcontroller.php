@@ -21,7 +21,6 @@ class selectcontroller {
 
     } 
   
-
     public function getBestClass(){
        
         $data_points_class = array();
@@ -43,7 +42,6 @@ class selectcontroller {
         return $data_points_class;
 
     }
-
 
     public function getBestStudent() {
 
@@ -67,7 +65,7 @@ class selectcontroller {
 
     public function getAllStations() {
 
-        $allStations = $this->db->getRows("SELECT * FROM station");
+        $allStations = $this->db->getRows("SELECT stationid, stationname, points, username FROM station JOIN user ON user.userid = station.userid");
     
         return $allStations;
     
@@ -75,13 +73,13 @@ class selectcontroller {
 
     public function getSingelStation($stationid) {
 
-        $singleStation = $this->db->getRows("SELECT stationid, stationname, points FROM station WHERE stationid = '$stationid'");
+        $singleStation = $this->db->getRows("SELECT stationid, stationname, points, username FROM station 
+        join user on user.userid = station.userid WHERE stationid = '$stationid'");
 
         return $singleStation;
 
     } 
-     
-    
+       
     public function getAllUsers() {
     
         $allUsers = $this->db->getRows("SELECT userid, username, userpassword, rolename FROM user JOIN role ON user.roleid = role.roleid
@@ -105,7 +103,25 @@ class selectcontroller {
     
         return $allRoles;
     }
-}
 
+    public function getUserTeacher(){
+
+        $userTeacher = $this->db->getRows("SELECT userid, username FROM user join role 
+        ON role.roleid = user.roleid WHERE(rolename like 'Lehrer' OR rolename like 'Admin' OR rolename) AND userID not IN (
+        SELECT user.userid from user JOIN station 
+        ON user.userid = station.userid);");
+
+        return $userTeacher;
+
+    }
+
+    public function getStationfromUser($username){
+
+        $stationfromuser = $this->db->getRows("SELECT stationid, stationname, points, username FROM station 
+        join user on user.userid = station.userid WHERE username like '$username'");
+
+        return $stationfromuser;
+    }
+}
 
 ?> 

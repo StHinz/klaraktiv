@@ -2,6 +2,12 @@
 require "../session.inc.php"; 
 require "../controller/selectcontroller.php";
 
+if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler') {
+
+  //Back to Page Show All
+header("location:../index.php");
+} 
+
 //
 if(isset($_GET['abgewiesen']))
 {
@@ -94,7 +100,7 @@ $(document).ready( function () {
             extend: 'copy',
             text: '<i class="fas fa-copy"></i>',
             exportOptions: {
-                    columns: [ 1, 2 ]
+                    columns: [ 1, 2,3 ]
                 }
         },
           {
@@ -103,7 +109,7 @@ $(document).ready( function () {
             autoFilter: true,
             sheetName: 'Teilnehmer KlarAktiv-Tag',
             exportOptions: {
-                    columns: [ 1, 2 ]
+                    columns: [ 1, 2,3 ]
                 }
         },
           {
@@ -112,7 +118,7 @@ $(document).ready( function () {
             orientation: 'landscape',
             pageSize: 'EXECUTIVE',
             exportOptions: {
-                    columns: [ 1, 2 ]
+                    columns: [ 1, 2,3 ]
                 }
           }
     

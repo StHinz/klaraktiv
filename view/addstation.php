@@ -1,6 +1,13 @@
 <?php 
 
-require "../session.inc.php"; 
+require "../session.inc.php";
+require "../controller/selectcontroller.php"; 
+
+if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler') {
+
+  //Back to Page Show All
+header("location:../index.php");
+} 
  
 
 if(isset($_GET['abgewiesen']))
@@ -15,10 +22,12 @@ if(isset($_GET['empty']))
 {
  echo "
  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <b>Achtung!</b> Es muss ein Stationsname angegeben werden! Versuchen Sie es erneut! 
+  <b>Achtung!</b> Es muss ein Stationsname angegeben und ein Verantwortlicher benannt werden! Versuchen Sie es erneut! 
 </div>";
 }
 
+$getUserTeacher = new selectcontroller();
+$userTeacher = $getUserTeacher->getUserTeacher();
 
 ?>
 <html>
@@ -66,6 +75,19 @@ if(isset($_GET['empty']))
       <?php
          for($i=1; $i <11; $i++) {
         echo '<option>'.$i.'</option>';
+        }
+        ?>
+    </select>
+  </div>
+
+<!-- add user -->
+<div class="form-group">
+    <label for="exampleFormControlSelect1">Verantwortlicher</label>
+    <select class="form-control" name='user'>
+      <option></option>
+      <?php
+        foreach ($userTeacher as $row){
+          echo '<option>'.$row['username'].'</option>';
         }
         ?>
     </select>

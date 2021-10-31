@@ -8,6 +8,7 @@ $username = $_POST['username'];
 $password = $_POST['password'];
 $role = $db->getRows("SELECT rolename FROM role WHERE roleid = (SELECT roleid from user WHERE username like '$username')");
 $countrow  = $db->countRows("Select userid FROM user WHERE username like '$username'");
+$userID = $db->getRows("SELECT userid from user WHERE username like '$username'");
 $getPasswordHash = $db->getRows("SELECT userpassword FROM user WHERE username like '$username'");
 
 // password check decrypt
@@ -20,6 +21,7 @@ if($countrow > 0
 session_start();
 $_SESSION['username'] = $_POST['username'];
 $_SESSION['role'] = $role[0]['rolename'];
+$_SESSION['userid'] = $userID[0]['userid'];
 
 //location to main-site
 header('Location:../view/main.php');

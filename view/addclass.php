@@ -1,7 +1,11 @@
 <?php 
 require "../session.inc.php"; 
 
+if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler') {
 
+  //Back to Page Show All
+header("location:../index.php");
+} 
 
 if(isset($_GET['empty']))
 {

@@ -6,8 +6,6 @@ session_start();
 // Session timeout
 $session_timeout = 900;
 
-// 
-
 //if no login, abboard
 if(empty($_SESSION['username']))
 {

@@ -8,9 +8,10 @@ require '../Model/insertdb.php';
 // get Data from Form
 $getStation = $_POST['station'];
 $getPoints = $_POST['points'];
+$getUser = $_POST['user'];
 
 
-if(empty($getStation) || empty($getPoints)) {
+if(empty($getStation) || empty($getPoints) || empty($getUser)) {
 
      // back to site
      header("location:../view/addstation.php?empty=true"); 
@@ -19,7 +20,7 @@ if(empty($getStation) || empty($getPoints)) {
 
 
     $insterstation =  new insertdb();
-    $insterstation->addstation($getStation,$getPoints);
+    $insterstation->addstation($getStation,$getPoints,$getUser);
 
 }
 

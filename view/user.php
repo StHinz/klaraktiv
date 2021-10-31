@@ -1,4 +1,11 @@
 <?php require "../session.inc.php"; 
+
+if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler') {
+
+  //Back to Page Show All
+header("location:../index.php");
+} 
+
 if(isset($_GET['exists']))
 {
  echo "
@@ -20,6 +27,14 @@ if(isset($_GET['delete']))
  echo "
  <div class='alert alert-success alert-dismissible fade show' role='alert'>
   Nutzer wurde gelöscht!
+</div>";
+}
+
+if(isset($_GET['abgewiesen']))
+{
+ echo "
+ <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  Nutzer kann nicht gelöscht werden, da er eine Station betreut!
 </div>";
 }
 
@@ -63,12 +78,11 @@ require "../controller/selectcontroller.php";
 
 $user = new selectcontroller();
 $getAllUsers = $user->getAllUsers();
-
+$selfUser = $_SESSION['userid'];
 
 echo "<div class='table-responsive table-xl'>
 <table id='stationtable' class ='table table-hover' width='100%'>
 <tr>
-<th>ID</th>
 <th>Nutzer</th>
 <th>Rolle</th>
 <th>Option</th>
@@ -77,12 +91,14 @@ echo "<div class='table-responsive table-xl'>
 
 foreach ($getAllUsers as $row) {
     echo "<tr>";
-    echo "<td>".$row['userid']."</td>";
     echo "<td>".$row['username']."</td>";
     echo "<td>".$row['rolename']."</td>";
-    echo "<td>
-    <form action='../controller/deleteusercontroller.php' method='POST'><input type='hidden' name='userid' value=".$row['userid'].">
-    <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>
+    echo "<td>";
+    if($selfUser != ($row['userid'])) {
+    echo "<form action='../controller/deleteusercontroller.php' method='POST'><input type='hidden' name='userid' value=".$row['userid'].">
+    <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>";
+    }
+    echo"
     <form action='./updateuser.php' method='POST'><input type='hidden' name='userid' value=".$row['userid'].">
     <button class='btn btn-sm btn-block btn-success'>bearbeiten</button></form>
     </td>";

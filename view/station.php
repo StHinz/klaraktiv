@@ -1,9 +1,24 @@
 <?php require "../session.inc.php"; 
+
+if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler') {
+
+  //Back to Page Show All
+header("location:../index.php");
+} 
+
 if(isset($_GET['abgewiesen']))
 {
  echo "
  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
   <strong>Achtung!</strong> Station kann nicht gelöscht werden, da an ihr bereits Punkte erworben wurden!
+</div>";
+}
+
+if(isset($_GET['empty']))
+{
+ echo "
+ <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  Station konnte nicht bearbeitet werden!
 </div>";
 }
 
@@ -69,6 +84,7 @@ echo "<div class='table-responsive table-xl'>
 <th>ID</th>
 <th>Station</th>
 <th>Punkte</th>
+<th>Verantwortlicher</th>
 <th>Option</th>
 </tr>
 </thead>";
@@ -78,6 +94,7 @@ foreach ($allStations as $row) {
     echo "<td>".$row['stationid']."</td>";
     echo "<td>".$row['stationname']."</td>";
     echo "<td>".$row['points']."</td>";
+    echo "<td>".$row['username']."</td>";
     echo "<td>
     <form action='../controller/deletestation.php' method='POST'><input type='hidden' name='stationid' value=".$row['stationid'].">
     <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>
