@@ -4,7 +4,8 @@ body{
     color:#fff;
 }
 .klaraktiv-container{
-    width: 300px;;
+    justify-content: flex center stretch;
+    width: 300px;
     max-width:100%;
     margin:50px auto;
     padding: 10px;
@@ -28,8 +29,7 @@ body{
 
 .klaraktiv-container .btn-save{
     background-color: #009b00;
-    /*color:#fff;
-    text-emphasis-color:#f29400;*/
+
 }
 
 a{

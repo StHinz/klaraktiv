@@ -61,17 +61,19 @@ if(isset($_GET['abgewiesen']))
 
 <div class="row">
     <div class="col-md-12 form-group">
-    <img src="../img/logo.png" alt="klaraoppenheimer" height="100%" width="100%">
+    <img src="../img/logo.png" alt="klaraoppenheimer" class="img-fluid">
     </div>
     <div class="btn-group-vertical col-md-12">
     <a href="./adduser.php" class="btn btn-success" role="button" aria-disabled="true">Nutzer hinzufügen</a></br>
     <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a></br>
     </div>  
 </div>
+</div>
 
 <!-- table -->
-<div class="row">
-<div class="col-md-22 form-group">
+
+<div class='d-flex justify-content-center'>
+
 <?php
 
 require "../controller/selectcontroller.php";
@@ -85,6 +87,7 @@ echo "<div class='table-responsive table-xl'>
 <tr>
 <th>Nutzer</th>
 <th>Rolle</th>
+<th>Station</th>
 <th>Option</th>
 </tr>
 </thead>";
@@ -93,6 +96,7 @@ foreach ($getAllUsers as $row) {
     echo "<tr>";
     echo "<td>".$row['username']."</td>";
     echo "<td>".$row['rolename']."</td>";
+    echo "<td>".$row['stationname']."</td>";
     echo "<td>";
     if($selfUser != ($row['userid'])) {
     echo "<form action='../controller/deleteusercontroller.php' method='POST'><input type='hidden' name='userid' value=".$row['userid'].">
@@ -109,6 +113,6 @@ foreach ($getAllUsers as $row) {
 ?>
 
 </div>
-</div>
+
 </body>
 </html>

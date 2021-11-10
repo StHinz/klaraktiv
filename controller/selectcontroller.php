@@ -13,7 +13,7 @@ class selectcontroller {
 
     public function getAllAttendes(){
 
-        $AllAttendees = $this->db->getRows("SELECT student.studentid, studentnumber, classname, SUM(points) AS points, studentstatus FROM student LEFT JOIN class ON student.classid = class.classid LEFT JOIN 
+        $AllAttendees = $this->db->getRows("SELECT student.studentid, studentnumber, classname, SUM(points) AS points, Count(Distinct student_station.stationid) AS stations, studentstatus FROM student LEFT JOIN class ON student.classid = class.classid LEFT JOIN 
         student_station ON student.studentid = student_station.studentid LEFT JOIN station ON student_station.stationid = station.stationid
         GROUP BY student.studentid;");
         
@@ -82,8 +82,8 @@ class selectcontroller {
        
     public function getAllUsers() {
     
-        $allUsers = $this->db->getRows("SELECT userid, username, userpassword, rolename FROM user JOIN role ON user.roleid = role.roleid
-        WHERE rolename NOT LIKE 'Superadmin'");
+        $allUsers = $this->db->getRows("SELECT user.userid, username, userpassword, rolename, stationname FROM user JOIN role ON user.roleid = role.roleid
+        JOIN station ON user.userid = station.userid WHERE rolename NOT LIKE 'Superadmin'");
 
         return $allUsers;
     
@@ -122,6 +122,7 @@ class selectcontroller {
 
         return $stationfromuser;
     }
+
 }
 
 ?> 

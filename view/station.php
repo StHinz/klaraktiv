@@ -61,25 +61,28 @@ if(isset($_GET['delete']))
 
 <div class="row">
     <div class="col-md-12 form-group">
-    <img src="../img/logo.png" alt="klaraoppenheimer" height="100%" width="100%">
+    <img src="../img/logo.png" alt="klaraoppenheimer" class="img-fluid">
     </div>
     <div class="btn-group-vertical col-md-12">
     <a href="./addstation.php" class="btn btn-success" role="button" aria-disabled="true">Station hinzufügen</a></br>
     <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a></br>
     </div>  
 </div>
-
+</div>
 <!-- table -->
-<div class="row">
-<div class="col-md-22 form-group">
+
+
+<div class='d-flex justify-content-center'>
+
 <?php
 require "../controller/selectcontroller.php";
 
 $getAllStations = new selectcontroller();
 $allStations = $getAllStations->getAllStations();
 
+
 echo "<div class='table-responsive table-xl'>
-<table id='stationtable' class ='table table-hover' width='100%'>
+<table id='stationtable' class ='table table-hover'>
 <tr>
 <th>ID</th>
 <th>Station</th>
@@ -108,6 +111,8 @@ foreach ($allStations as $row) {
 ?>
 
 </div>
-</div>
+
+
+
 </body>
 </html>

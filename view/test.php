@@ -54,6 +54,7 @@ $getAllattendees = $attendees->getAllAttendes();
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
 <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap.min.css" rel="stylesheet">
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
@@ -87,9 +88,7 @@ $(document).ready( function () {
           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
             }, 
 
-     
-        responsive: true,
-
+      responsive: true,
         select: true,    	
     
        dom: '<Bf<t>lp>', 
@@ -139,42 +138,37 @@ $(document).ready( function () {
 
 <body>
 
+
+
 <!-- Container Klaraktiv -->
-<div class="klaraktiv-container" > 
+<div class="klaraktiv-container" >
 
 <!-- Logo KOS -->
-<p>
     <img src="../img/logo.png" alt="klaraoppenheimer" class="img-fluid">
- 
-</p>
 
 <!-- Button -->
+</p>
+    <a href="./addclass.php" class="btn btn-success btn-lg btn-block" role="button">Teilnehmer hinzufügen</a>
+    <a href="./main.php" class="btn btn-info btn-lg btn-block" role="button" aria-disabled="true">Hauptseite</a>
 
-    <a href="./addclass.php" class="btn btn-success btn-block btn-lg" role="button">Teilnehmer hinzufügen</a>
-    <a href="./main.php" class="btn btn-info btn-block btn-lg" role="button" aria-disabled="true">Hauptseite</a>
 
 </div>
 
+<!-- table -->
 
-<!-- table 
-<div class='d-flex justify-content-xl-center'>
-  <div class='table table-responsive table-xl'>
--->
-<div class='container-fluid'>
 
 
 <?php
 
 echo "
-
-
-<table id='attendeestable' class='table' style='width:100%'>
+<div class='d-flex justify-content-xl-center'>
+<div class='table-responsive-xl'>
+<table id='attendeestable' class ='table table-hover' width='auto'>
 <thead>
 <tr>
 <th>Schülernr.</th>
 <th>Klasse</th>
 <th>Punkte</th>
-<th>Stationen</th>
 <th>Status</th>
 <th>Option</th>
 </tr>
@@ -185,7 +179,6 @@ foreach ($getAllattendees as $row) {
     echo "<td>".$row['studentnumber']."</td>";
     echo "<td>".$row['classname']."</td>";
     echo "<td>".$row['points']."</td>"; 
-    echo "<td>".$row['stations']."</td>";
     if($row['studentstatus'] == 1) {
         echo "<td><i class='fas fa-check-circle' style='color:green'></i></td>";
 
@@ -211,18 +204,9 @@ foreach ($getAllattendees as $row) {
         <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>
         </td>";
     }
-
-   
-
 }
-
-echo "</tr></table></div>";
-
-
-
+echo "</tr></table></div></div>";
 ?>
-
-</div>
 
 
 </body>
