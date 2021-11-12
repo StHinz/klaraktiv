@@ -49,7 +49,7 @@ $getAllattendees = $attendees->getAllAttendes();
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<!-- Datatables -->
+<!-- Datatables - check -->
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
 <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" rel="stylesheet">
@@ -153,22 +153,23 @@ $(document).ready( function () {
     <a href="./addclass.php" class="btn btn-success btn-block btn-lg" role="button">Teilnehmer hinzufügen</a>
     <a href="./main.php" class="btn btn-info btn-block btn-lg" role="button" aria-disabled="true">Hauptseite</a>
 
-</div>
 
+</div>
 
 <!-- table 
 <div class='d-flex justify-content-xl-center'>
-  <div class='table table-responsive table-xl'>
+ <div class='table table-responsive table-xl'>
+    <div class='container-fluid'>
 -->
-<div class='container-fluid'>
 
+<div class="klaraktiv-table"> 
 
 <?php
 
 echo "
 
 
-<table id='attendeestable' class='table' style='width:100%'>
+<table id='attendeestable' class='table' style='width:10px'>
 <thead>
 <tr>
 <th>Schülernr.</th>
@@ -223,6 +224,7 @@ echo "</tr></table></div>";
 ?>
 
 </div>
+
 
 
 </body>

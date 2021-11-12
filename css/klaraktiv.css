@@ -12,6 +12,14 @@ body{
    
 }
 
+.klaraktiv-table{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+}
 
 .klaraktiv-container h2{
     text-align:center;
