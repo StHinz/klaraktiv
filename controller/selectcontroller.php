@@ -82,8 +82,8 @@ class selectcontroller {
        
     public function getAllUsers() {
     
-        $allUsers = $this->db->getRows("SELECT user.userid, username, userpassword, rolename, stationname FROM user JOIN role ON user.roleid = role.roleid
-        JOIN station ON user.userid = station.userid WHERE rolename NOT LIKE 'Superadmin'");
+        $allUsers = $this->db->getRows("SELECT user.userid, username, userpassword, rolename, stationname FROM user LEFT JOIN role ON user.roleid = role.roleid
+        Left JOIN station ON user.userid = station.userid WHERE rolename NOT LIKE 'Superadmin'");
 
         return $allUsers;
     

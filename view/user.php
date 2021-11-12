@@ -47,9 +47,94 @@ if(isset($_GET['abgewiesen']))
 <link rel="stylesheet" href="../css/klaraktiv.css">
 
 <!-- bootstrap css -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Datatables -->
+
+<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
+<link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" rel="stylesheet">
+<link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.bootstrap.min.js"></script>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.7/js/dataTables.fixedHeader.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.5/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.5/js/responsive.bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
+
+  
+
+<script>
+$(document).ready( function () {
+    $('#usertable').DataTable( {
+        "language": {
+          "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
+            }, 
+
+     
+        responsive: true,
+
+        select: true,    	
+    
+       dom: '<Bf<t>lp>', 
+       
+
+        lengthMenu: [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100,"Alle"] ] ,
+
+        buttons: [
+          {
+            extend: 'copy',
+            text: '<i class="fas fa-copy"></i>',
+            exportOptions: {
+                    columns: [ 1, 0, 2, 3]
+                }
+        },
+          {
+            extend: 'excelHtml5',
+            text: '<i class="fas fa-file-excel"></i>',
+            autoFilter: true,
+            sheetName: 'Teilnehmer KlarAktiv-Tag',
+            exportOptions: {
+                    columns: [  1, 0, 2,3 ]
+                }
+        },
+          {
+            extend: 'pdfHtml5',
+            text: '<i class="fas fa-file-pdf"></i>',
+            orientation: 'landscape',
+            pageSize: 'EXECUTIVE',
+            exportOptions: {
+                    columns: [ 0, 1, 2,3 ]
+                }
+          }
+    
+           
+        ] 
+  } );
+
+    new $.fn.dataTable.FixedHeader( table );
+
+} );
+</script>
 
 </head>
 
@@ -71,8 +156,7 @@ if(isset($_GET['abgewiesen']))
 </div>
 
 <!-- table -->
-
-<div class='d-flex justify-content-center'>
+<div class='klaraktiv-table'>
 
 <?php
 
@@ -82,8 +166,9 @@ $user = new selectcontroller();
 $getAllUsers = $user->getAllUsers();
 $selfUser = $_SESSION['userid'];
 
-echo "<div class='table-responsive table-xl'>
-<table id='stationtable' class ='table table-hover' width='100%'>
+echo "
+<table id='usertable' class ='table'>
+<thead>
 <tr>
 <th>Nutzer</th>
 <th>Rolle</th>
@@ -109,7 +194,7 @@ foreach ($getAllUsers as $row) {
 
 }
 
- echo "</table></div>";
+ echo "</table>";
 ?>
 
 </div>

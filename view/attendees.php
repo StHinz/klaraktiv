@@ -49,18 +49,18 @@ $getAllattendees = $attendees->getAllAttendes();
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
-<!-- Datatables - check -->
+<!-- Datatables -->
 
 <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css"/>
 <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="//cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
 
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -156,11 +156,7 @@ $(document).ready( function () {
 
 </div>
 
-<!-- table 
-<div class='d-flex justify-content-xl-center'>
- <div class='table table-responsive table-xl'>
-    <div class='container-fluid'>
--->
+<!-- table -->
 
 <div class="klaraktiv-table"> 
 
@@ -169,7 +165,7 @@ $(document).ready( function () {
 echo "
 
 
-<table id='attendeestable' class='table' style='width:10px'>
+<table id='attendeestable' class='table'>
 <thead>
 <tr>
 <th>Schülernr.</th>
