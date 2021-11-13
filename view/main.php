@@ -43,6 +43,11 @@ if($role == 'Superadmin' || $role == 'Admin') {
  <a href='./user.php' class='btn btn-warning btn-lg btn-block' role='button' aria-disabled='true'>Nutzerverwaltung</a></br>
 ";
 }
+if($role == 'Superadmin') {
+    echo "   
+    <a href='./system.php' class='btn btn-warning btn-lg btn-block' role='button' aria-disabled='true'>Systemeinstellungen</a></br>
+   ";
+   }
 ?>
 <a href='../controller/logout.php' class='btn btn-danger btn-lg btn-block' role='button' aria-disabled='true'>Logout</a>
 </div>

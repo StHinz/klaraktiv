@@ -95,40 +95,11 @@ $(document).ready( function () {
 
         select: true,    	
     
-       dom: '<Bf<t>lp>', 
+       dom: '<f<t>lp>', 
        
 
-        lengthMenu: [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100,"Alle"] ] ,
-
-        buttons: [
-          {
-            extend: 'copy',
-            text: '<i class="fas fa-copy"></i>',
-            exportOptions: {
-                    columns: [ 1, 0, 2, 3]
-                }
-        },
-          {
-            extend: 'excelHtml5',
-            text: '<i class="fas fa-file-excel"></i>',
-            autoFilter: true,
-            sheetName: 'Teilnehmer KlarAktiv-Tag',
-            exportOptions: {
-                    columns: [  1, 0, 2,3 ]
-                }
-        },
-          {
-            extend: 'pdfHtml5',
-            text: '<i class="fas fa-file-pdf"></i>',
-            orientation: 'landscape',
-            pageSize: 'EXECUTIVE',
-            exportOptions: {
-                    columns: [ 0, 1, 2,3 ]
-                }
-          }
-    
+        lengthMenu: [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100,"Alle"] ] 
            
-        ] 
   } );
 
     new $.fn.dataTable.FixedHeader( table );
