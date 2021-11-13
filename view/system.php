@@ -1,6 +1,6 @@
 <?php require "../session.inc.php"; 
 
-if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler') {
+if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler' || ($_SESSION['role']) == 'Admin') {
 
   //Back to Page Show All
 header("location:../index.php");
@@ -83,34 +83,10 @@ if(isset($_GET['abgewiesen']))
 
   
 
-<script>
-$(document).ready( function () {
-    $('#usertable').DataTable( {
-        "language": {
-          "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
-            }, 
-
-     
-        responsive: true,
-
-        select: true,    	
-    
-       dom: '<f<t>lp>', 
-       
-
-        lengthMenu: [ [5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100,"Alle"] ]
-
-  
-  } );
-
-    new $.fn.dataTable.FixedHeader( table );
-
-} );
-</script>
 
 </head>
 
-<title>klaraktiv - Nutzerverwaltung</title>
+<title>klaraktiv - Systemeinstellungen</title>
 
 <body>
 <!-- Logo KOS -->
@@ -121,52 +97,26 @@ $(document).ready( function () {
     <img src="../img/logo.png" alt="klaraoppenheimer" class="img-fluid">
     </div>
     <div class="btn-group-vertical col-md-12">
-    <a href="./adduser.php" class="btn btn-success" role="button" aria-disabled="true">Nutzer hinzufügen</a></br>
     <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a></br>
     </div>  
 </div>
 </div>
 
-<!-- table -->
-<div class='klaraktiv-table'>
+
+<!-- MAIN -->
 
 <?php
 
 require "../controller/selectcontroller.php";
 
-$user = new selectcontroller();
-$getAllUsers = $user->getAllUsers();
-$selfUser = $_SESSION['userid'];
+$select = new selectcontroller();
 
-echo "
-<table id='usertable' class ='table'>
-<thead>
-<tr>
-<th>Nutzer</th>
-<th>Rolle</th>
-<th>Station</th>
-<th>Option</th>
-</tr>
-</thead>";
+// Delete Class
+// Delete Station
+// Delete Student with points
+// Delete whole System with verify Code 
 
-foreach ($getAllUsers as $row) {
-    echo "<tr>";
-    echo "<td>".$row['username']."</td>";
-    echo "<td>".$row['rolename']."</td>";
-    echo "<td>".$row['stationname']."</td>";
-    echo "<td>";
-    if($selfUser != ($row['userid'])) {
-    echo "<form action='../controller/deleteusercontroller.php' method='POST'><input type='hidden' name='userid' value=".$row['userid'].">
-    <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>";
-    }
-    echo"
-    <form action='./updateuser.php' method='POST'><input type='hidden' name='userid' value=".$row['userid'].">
-    <button class='btn btn-sm btn-block btn-success'>bearbeiten</button></form>
-    </td>";
 
-}
-
- echo "</table>";
 ?>
 
 </div>
