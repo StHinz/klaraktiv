@@ -107,19 +107,128 @@ if(isset($_GET['abgewiesen']))
 
 <?php
 
-require "../controller/selectcontroller.php";
-
+require_once "../controller/selectcontroller.php";
 $select = new selectcontroller();
-
-// Delete Class
-// Delete Station
-// Delete Student with points
-// Delete whole System with verify Code 
-
+$getClass = $select->getAllClass();
+$getStations = $select->getAllStations();
+$getStudents = $select->getAllAttendes();
 
 ?>
 
+
+
+<!-- Delete Class -->
+<div class="klaraktiv-system">
+<form name="deleteclass" action="../controller/deleteclasscontroller.php" method="post">
+
+<h3> Klasse löschen </h3>
+<div class="form-row">
+  <div class="form-group col-md-4">
+
+  <select id='class' class="form-control" name='class'>
+  <option></option>
+      <?php
+        foreach ($getClass as $row){
+          echo '<option>'.$row['classname'].'</option>';
+        }
+        ?>
+  </select>
+  </div>
+
+  <div class="form-group col-md-4">
+  <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
+  </div>
+  <div class="alert alert-danger" role="alert">
+ Durch die Löschung der Klasse werden auch alle Teilnehmer der Klasse und deren Punkte gelöscht!
 </div>
+</div>
+</form>
+      </div>
+<!-- 
+// Delete Station -->
+<div class="klaraktiv-system">
+<form>
+<h3> Station löschen </h3>
+<div class="form-row">
+  <div class="form-group col-md-4">
+
+  <select id="getstation" class="form-control">
+  <option></option>
+      <?php
+        foreach ($getStations as $row){
+          echo '<option>'.$row['stationname'].'</option>';
+        }
+        ?>
+  </select>
+  </div>
+
+  <div class="form-group col-md-4">
+  
+      <input type="password" class="form-control" id="password" placeholder="Password">
+  </div>
+
+  <div class="form-group col-md-4">
+  <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
+  </div>
+  <div class="alert alert-danger" role="alert">
+ Durch die Löschung der Station werden auch alle Punkte bei Teilnehmern, die an der Station Punkte erhalten haben, gelöscht!
+</div>
+</div>
+</form>
+</div>
+
+<!-- Delete Student with points -->
+
+<div class="klaraktiv-system">
+<form>
+<h3> Teilnehmer löschen </h3>
+<div class="form-row">
+  <div class="form-group col-md-4">
+
+  <select id="inputClass" class="form-control">
+  <option></option>
+      <?php
+        foreach ($getStudents as $row){
+          echo '<option>'.$row['studentnumber'].'</option>';
+        }
+        ?>
+  </select>
+  </div>
+
+  <div class="form-group col-md-4">
+  
+      <input type="password" class="form-control" id="password" placeholder="Password">
+  </div>
+
+  <div class="form-group col-md-4">
+  <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
+  </div>
+  <div class="alert alert-danger" role="alert">
+ Durch die Löschung des Teilnehmers werden auch alle erworbenen Punkte des Teilnehmers gelöscht!
+</div>
+</div>
+</form>
+</div>
+
+<!-- Delete whole System with verify Code  -->
+
+
+<div class="klaraktiv-system">
+<form>
+<h3> System zurücksetzen</h3>
+<div class="form-row">
+  <div class="form-group col-md-12">
+  <input class="btn btn-danger btn-block" type="submit" value="Reset"></br>
+  </div>
+  <div class="alert alert-danger" role="alert">
+ <b>Achtung! </b>Alle Stationen, Teilnehmer und erworbenen Punkte werden unwiderruflich gelöscht!
+</div>
+</div>
+</form>
+</div>
+
+
+
 
 </body>
 </html>

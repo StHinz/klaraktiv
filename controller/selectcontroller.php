@@ -1,6 +1,6 @@
 <?php
 
-require "../model/database.php";
+require_once "../model/database.php";
 
 class selectcontroller {
 
@@ -123,6 +123,17 @@ class selectcontroller {
         return $stationfromuser;
     }
 
+    public function getAllClass () {
+
+        $AllClasses = $this->db->getRows("SELECT * FROM class;");
+        return $AllClasses;
+    }
+
+    public function getStudentsfromClass ($classname) {
+
+        $allStudentsFromClass = $this->db->getRows("SELECT studentid FROM student WHERE classid IN (SELECT classid FROM class WHERE classname like '$classname');");
+        return $allStudentsFromClass;
+    }
 }
 
 ?> 

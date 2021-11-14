@@ -12,12 +12,21 @@ body{
    
 }
 
-.klaraktiv-table{
+.klaraktiv-main{
     display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
-    width: 60%;
+    width: 80%;
+    padding: 10px;
+}
+
+.klaraktiv-system{
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin: auto;
+    width: 20%;
     padding: 10px;
 }
 

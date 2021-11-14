@@ -45,7 +45,7 @@ if($role == 'Superadmin' || $role == 'Admin') {
 }
 if($role == 'Superadmin') {
     echo "   
-    <a href='./system.php' class='btn btn-warning btn-lg btn-block' role='button' aria-disabled='true'>Systemeinstellungen</a></br>
+    <a href='./system.php' class='btn btn-warning btn-lg btn-block' role='button' aria-disabled='true'>System</a></br>
    ";
    }
 ?>

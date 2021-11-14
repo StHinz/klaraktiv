@@ -2,7 +2,7 @@
 <?php
 
 
-require "../model/database.php";
+require_once "../model/database.php";
 
 class deletedb {
     
@@ -16,16 +16,18 @@ class deletedb {
     }
 
     public function deletestudent($getStudentid) {
-        try {
+       // try {
             $deletstudent = $this->db->updateRow("DELETE FROM student WHERE studentID like '$getStudentid'");
+
+            echo $getStudentid." SUCCESS";
             
-            // back to site
+            /* back to site
             header("location:../view/attendees.php?delete=true");
             } catch (Exception $e) {
                 
                 header('Location:../view/attendees.php?abgewiesen=true');
             
-            }
+            } */
 
     }
 
@@ -57,6 +59,35 @@ class deletedb {
             }
 
     }
+
+    public function deleteclass($getClassID) {
+        try {
+            $deleteclass = $this->db->updateRow("DELETE FROM class WHERE classid like '$getClassID'");
+            
+            // back to site
+            header("location:../view/system.php?delete=true");
+            } catch (Exception $e) {
+                
+                header('Location:../view/system.php?abgewiesen=true');
+            
+            }
+
+    }
+
+    public function deleteAttennde($getStudentid) {
+        try {
+            $deletStudentFromContest = $this->db->updateRow("DELETE FROM student_station WHERE studentid like '$getStudentid'");
+            
+            // back to site
+            header("location:../view/system.php?delete=true");
+            } catch (Exception $e) {
+                
+                header('Location:../view/system.php?abgewiesen=true');
+            
+            }
+
+    }
+    
 }
 
 ?>
