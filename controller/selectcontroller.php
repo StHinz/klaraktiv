@@ -25,12 +25,12 @@ class selectcontroller {
        
         $data_points_class = array();
 
-        $bestClass = $this->db->getRows("SELECT class.classname, sum(Points)/count(distinct student_station.studentid) as summe from student_station 
+        $bestClass = $this->db->getRows("SELECT class.classname, (sum(Points)/(SELECT count(student.studentid) from student)) as summe from student_station 
         JOIN station ON student_station.stationid = station.stationid
         JOIN student ON student_station.studentid = student.studentid
         JOIN class ON student.classid = class.classid
         WHERE student.studentstatus = 1
-        group by student.classid ORDER BY summe ASC LIMIT 5;");
+        group by student.classid ORDER BY summe DESC LIMIT 5;");
 
          foreach($bestClass as $row) {        
                 /* Push the results in our array */
@@ -47,14 +47,15 @@ class selectcontroller {
 
         $data_points_students = array();
 
-        $bestStudents = $this->db->getRows("SELECT studentnumber, SUM(points) AS summe FROM student JOIN student_station 
+        $bestStudents = $this->db->getRows("SELECT studentnumber, SUM(points) AS summe, classname FROM student JOIN student_station 
         ON student.studentid = student_station.studentid JOIN station ON station.stationid = student_station.stationid
+        JOIN class ON class.classid = student.classid
         WHERE student.studentstatus = 1
-        GROUP BY 1 ORDER BY summe ASC LIMIT 5;");
+        GROUP BY 1 ORDER BY summe DESC LIMIT 5;");
 
         foreach($bestStudents as $row) {        
             /* Push the results in our array */
-                $point = array("label" =>  $row['studentnumber'] ,"y" =>  $row['summe']);
+                $point = array("label" => ( $row['studentnumber'].' ('.$row['classname']).')' ,"y" =>  $row['summe']);
                 array_push($data_points_students, $point);
         }
 

@@ -107,7 +107,7 @@ if(isset($_GET['abgewiesen']))
     <img src="../img/logo.png" alt="klaraoppenheimer" class="img-fluid">
     </div>
     <div class="btn-group-vertical col-md-12">
-    <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a></br>
+    <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a>
     </div>  
 </div>
 </div>
@@ -125,16 +125,18 @@ $getStudents = $select->getAllAttendes();
 
 ?>
 
-
-
 <!-- Delete Class -->
 <div class="klaraktiv-system">
 <form name="deleteclass" action="../controller/deleteclasscontroller.php" method="post">
 
 <h3> Klasse löschen </h3>
 <div class="form-row">
-  <div class="form-group col-md-4">
-
+<div class="alert alert-danger" role="alert">
+ Durch die Löschung der Klasse werden auch alle Teilnehmer der Klasse und deren Punkte gelöscht!
+</div>
+</div>
+<div class="form-row">
+  <div class="form-group col-md-12">
   <select id='class' class="form-control" name='class'>
   <option></option>
       <?php
@@ -144,18 +146,17 @@ $getStudents = $select->getAllAttendes();
         ?>
   </select>
   </div>
-      <div class="col-md-4 form-group">
-            <input type="password" placeholder="Passwort" class="form-control" name="password">
-      </div>
-  <div class="form-group col-md-4">
+  </div>
+  <div class="form-row">
+  <div class="col-md-12 form-group">
+  <input type="password" placeholder="Passwort" class="form-control" name="password">
+  </div>
+  <div class="form-group col-md-12">
   <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
   </div>
-  <div class="alert alert-danger" role="alert">
- Durch die Löschung der Klasse werden auch alle Teilnehmer der Klasse und deren Punkte gelöscht!
-</div>
-</div>
+  </div>
 </form>
-      </div>
+  </div>
 
 <!-- Delete Student with points -->
 
@@ -163,9 +164,14 @@ $getStudents = $select->getAllAttendes();
 <form name="deletestudent" action="../controller/deletestudentcontroller.php" method="post">
 <h3> Teilnehmer löschen </h3>
 <div class="form-row">
-  <div class="form-group col-md-4">
+<div class="alert alert-danger" role="alert">
+ Durch die Löschung des Teilnehmers werden auch alle erworbenen Punkte des Teilnehmers gelöscht!
+</div>
+      </div>
 
-  <select id="inputClass" class="form-control" name="student">
+<div class="form-row">
+<div class="form-group col-md-12">
+<select id="inputClass" class="form-control" name="student">
   <option></option>
       <?php
         foreach ($getStudents as $row){
@@ -174,16 +180,17 @@ $getStudents = $select->getAllAttendes();
         ?>
   </select>
   </div>
-
-  <div class="col-md-4 form-group">
+      </div>
+      <div class="form-row">
+  <div class="col-md-12 form-group">
             <input type="password" placeholder="Passwort" class="form-control" name="password">
       </div>
-  <div class="form-group col-md-4">
+      </div>
+      <div class="form-row">
+  <div class="form-group col-md-12">
   <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
   </div>
-  <div class="alert alert-danger" role="alert">
- Durch die Löschung des Teilnehmers werden auch alle erworbenen Punkte des Teilnehmers gelöscht!
-</div>
+  
 </div>
 </form>
 </div>
@@ -195,15 +202,16 @@ $getStudents = $select->getAllAttendes();
 <form name="deletestudent" action="../controller/resetcontroller.php" method="post">
 <h3> System zurücksetzen</h3>
 <div class="form-row">
+<div class="alert alert-danger" role="alert">
+ <b>Achtung! </b>Alle Stationen, Teilnehmer und erworbenen Punkte werden unwiderruflich gelöscht!
+</div>
 <div class="form-group col-md-12">
 <input type="password" class="form-control" placeholder="Passwort" name='password'>
       </div>
   <div class="form-group col-md-12">
   <input class="btn btn-danger btn-block" type="submit" value="Reset"></br>
   </div>
-  <div class="alert alert-danger" role="alert">
- <b>Achtung! </b>Alle Stationen, Teilnehmer und erworbenen Punkte werden unwiderruflich gelöscht!
-</div>
+  
 </div>
 </form>
 </div>
