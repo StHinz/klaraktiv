@@ -16,18 +16,18 @@ class deletedb {
     }
 
     public function deletestudent($getStudentid) {
-       // try {
+        try {
             $deletstudent = $this->db->updateRow("DELETE FROM student WHERE studentID like '$getStudentid'");
 
-            echo $getStudentid." SUCCESS";
             
-            /* back to site
+            
+            //back to site
             header("location:../view/attendees.php?delete=true");
             } catch (Exception $e) {
                 
                 header('Location:../view/attendees.php?abgewiesen=true');
             
-            } */
+            } 
 
     }
 
@@ -60,9 +60,9 @@ class deletedb {
 
     }
 
-    public function deleteclass($getClassID) {
+    public function deleteclass($getClass) {
         try {
-            $deleteclass = $this->db->updateRow("DELETE FROM class WHERE classid like '$getClassID'");
+            $deleteclass = $this->db->updateRow("DELETE FROM class WHERE classname like '$getClass'");
             
             // back to site
             header("location:../view/system.php?delete=true");
@@ -85,6 +85,34 @@ class deletedb {
                 header('Location:../view/system.php?abgewiesen=true');
             
             }
+
+    }
+    
+    public function deleteAll() {
+        try {
+            $deleteAtteende = $this->db->updateRow("DELETE FROM student_station WHERE student_station_id >= 0");
+        
+            
+
+            $deletstudent = $this->db->updateRow("DELETE FROM student WHERE studentid >0 ");
+
+           
+
+            $deleteClass = $this->db->updateRow("DELETE FROM class WHERE classid >0");
+
+            
+
+            $deleteStation = $this->db->updateRow("DELETE FROM Station WHERE stationid >0");
+
+           
+            // back to site
+            header("location:../view/system.php?deleteall=true");
+
+            } catch (Exception $e) {
+                
+                header('Location:../view/system.php?abgewiesen=true');
+            
+            } 
 
     }
     

@@ -156,9 +156,9 @@ $(document).ready( function () {
 
 </div>
 
-<!-- table 
+<!-- table -->
 
-<div class="klaraktiv-main">  -->
+<div class="klaraktiv-main"> 
 
 <?php
 

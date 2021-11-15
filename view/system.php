@@ -6,11 +6,19 @@ if( ($_SESSION['role']) == 'Lehrer' || ($_SESSION['role']) == 'Schueler' || ($_S
 header("location:../index.php");
 } 
 
-if(isset($_GET['exists']))
+if(isset($_GET['password']))
 {
  echo "
  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  <strong>Achtung!</strong> Nutzername existiert bereits. Vergeben Sie einen anderen Nutzernamen.
+  <strong>Achtung!</strong> Das Passwort ist falsch! 
+</div>";
+}
+
+if(isset($_GET['empty']))
+{
+ echo "
+ <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  <strong>Achtung!</strong> Klasse / Teilnehmer und Passwort dürfen nicht leer sein!
 </div>";
 }
 
@@ -18,15 +26,15 @@ if(isset($_GET['success']))
 {
  echo "
  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-  Nutzer wurde hinzugefügt bzw. geändert!
+  Die Löschung wurde vorgenommen und ist unwiderruflich!
 </div>";
 }
 
-if(isset($_GET['delete']))
+if(isset($_GET['deleteall']))
 {
  echo "
  <div class='alert alert-success alert-dismissible fade show' role='alert'>
-  Nutzer wurde gelöscht!
+ Das System wurde komplett zurückgesetzt!
 </div>";
 }
 
@@ -34,9 +42,11 @@ if(isset($_GET['abgewiesen']))
 {
  echo "
  <div class='alert alert-danger alert-dismissible fade show' role='alert'>
-  Nutzer kann nicht gelöscht werden, da er eine Station betreut!
+  <b>Die Löschung war nicht erfolgreich!</br> Ein Fehler ist aufgetreten. Wenden Sie sich an den Administrator!
 </div>";
 }
+
+
 
 ?>
 
@@ -134,7 +144,9 @@ $getStudents = $select->getAllAttendes();
         ?>
   </select>
   </div>
-
+      <div class="col-md-4 form-group">
+            <input type="password" placeholder="Passwort" class="form-control" name="password">
+      </div>
   <div class="form-group col-md-4">
   <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
   </div>
@@ -144,48 +156,16 @@ $getStudents = $select->getAllAttendes();
 </div>
 </form>
       </div>
-<!-- 
-// Delete Station -->
-<div class="klaraktiv-system">
-<form>
-<h3> Station löschen </h3>
-<div class="form-row">
-  <div class="form-group col-md-4">
-
-  <select id="getstation" class="form-control">
-  <option></option>
-      <?php
-        foreach ($getStations as $row){
-          echo '<option>'.$row['stationname'].'</option>';
-        }
-        ?>
-  </select>
-  </div>
-
-  <div class="form-group col-md-4">
-  
-      <input type="password" class="form-control" id="password" placeholder="Password">
-  </div>
-
-  <div class="form-group col-md-4">
-  <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
-  </div>
-  <div class="alert alert-danger" role="alert">
- Durch die Löschung der Station werden auch alle Punkte bei Teilnehmern, die an der Station Punkte erhalten haben, gelöscht!
-</div>
-</div>
-</form>
-</div>
 
 <!-- Delete Student with points -->
 
 <div class="klaraktiv-system">
-<form>
+<form name="deletestudent" action="../controller/deletestudentcontroller.php" method="post">
 <h3> Teilnehmer löschen </h3>
 <div class="form-row">
   <div class="form-group col-md-4">
 
-  <select id="inputClass" class="form-control">
+  <select id="inputClass" class="form-control" name="student">
   <option></option>
       <?php
         foreach ($getStudents as $row){
@@ -195,11 +175,9 @@ $getStudents = $select->getAllAttendes();
   </select>
   </div>
 
-  <div class="form-group col-md-4">
-  
-      <input type="password" class="form-control" id="password" placeholder="Password">
-  </div>
-
+  <div class="col-md-4 form-group">
+            <input type="password" placeholder="Passwort" class="form-control" name="password">
+      </div>
   <div class="form-group col-md-4">
   <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
   </div>
@@ -214,9 +192,12 @@ $getStudents = $select->getAllAttendes();
 
 
 <div class="klaraktiv-system">
-<form>
+<form name="deletestudent" action="../controller/resetcontroller.php" method="post">
 <h3> System zurücksetzen</h3>
 <div class="form-row">
+<div class="form-group col-md-12">
+<input type="password" class="form-control" placeholder="Passwort" name='password'>
+      </div>
   <div class="form-group col-md-12">
   <input class="btn btn-danger btn-block" type="submit" value="Reset"></br>
   </div>

@@ -127,7 +127,7 @@ $(document).ready( function () {
 </div>
 
 <!-- table -->
-<div class='klaraktiv-main'>
+<div class='klaraktiv-main'> 
 
 
 
@@ -142,17 +142,15 @@ echo "
 <table id='stationtable' class='table'>
 <thead>
 <tr>
-<th>ID</th>
 <th>Station</th>
 <th>Punkte</th>
-<th>Verantwortlicher</th>
+<th>Verantwortlich</th>
 <th>Option</th>
 </tr>
 </thead>";
 
 foreach ($allStations as $row) {
     echo "<tr>";
-    echo "<td>".$row['stationid']."</td>";
     echo "<td>".$row['stationname']."</td>";
     echo "<td>".$row['points']."</td>";
     echo "<td>".$row['username']."</td>";

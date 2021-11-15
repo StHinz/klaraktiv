@@ -134,6 +134,20 @@ class selectcontroller {
         $allStudentsFromClass = $this->db->getRows("SELECT studentid FROM student WHERE classid IN (SELECT classid FROM class WHERE classname like '$classname');");
         return $allStudentsFromClass;
     }
+
+    public function getSingleStudent ($studentnumber) {
+
+        $singleStudent = $this->db->getRows("SELECT studentid FROM student WHERE studentnumber like '$studentnumber';");
+        return $singleStudent;
+    }
+
+    public function getPasswordFromUser ($username) {
+
+        $getPasswordHash = $this->db->getRows("SELECT userpassword FROM user WHERE username like '$username'");
+        return $getPasswordHash;
+
+
+    }
 }
 
 ?> 
