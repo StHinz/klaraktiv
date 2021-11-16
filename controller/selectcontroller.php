@@ -25,12 +25,13 @@ class selectcontroller {
        
         $data_points_class = array();
 
-        $bestClass = $this->db->getRows("SELECT class.classname, (sum(Points)/(SELECT count(student.studentid) from student)) as summe from student_station 
+        $bestClass = $this->db->getRows("SELECT class.classname, (sum(Points)/(SELECT count(student.studentid) from student where student.classid = class.classid AND student.studentstatus = 1 )) as summe from student_station 
         JOIN station ON student_station.stationid = station.stationid
         JOIN student ON student_station.studentid = student.studentid
         JOIN class ON student.classid = class.classid
         WHERE student.studentstatus = 1
-        group by student.classid ORDER BY summe DESC LIMIT 5;");
+        group by student.classid
+        ORDER BY Summe DESC LIMIT 5;");
 
          foreach($bestClass as $row) {        
                 /* Push the results in our array */
