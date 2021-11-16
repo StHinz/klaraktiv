@@ -65,7 +65,7 @@ class deletedb {
             $deleteclass = $this->db->updateRow("DELETE FROM class WHERE classname like '$getClass'");
             
             // back to site
-            header("location:../view/system.php?delete=true");
+            header("location:../view/system.php?success=true");
             } catch (Exception $e) {
                 
                 header('Location:../view/system.php?abgewiesen=true');
@@ -79,7 +79,7 @@ class deletedb {
             $deletStudentFromContest = $this->db->updateRow("DELETE FROM student_station WHERE studentid like '$getStudentid'");
             
             // back to site
-            header("location:../view/system.php?delete=true");
+            header("location:../view/system.php?success=true");
             } catch (Exception $e) {
                 
                 header('Location:../view/system.php?abgewiesen=true');
