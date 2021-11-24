@@ -67,7 +67,7 @@ class selectcontroller {
 
     public function getAllStations() {
 
-        $allStations = $this->db->getRows("SELECT stationid, stationname, points, username FROM station JOIN user ON user.userid = station.userid");
+        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, username FROM station JOIN user ON user.userid = station.userid");
     
         return $allStations;
     
@@ -75,7 +75,7 @@ class selectcontroller {
 
     public function getSingelStation($stationid) {
 
-        $singleStation = $this->db->getRows("SELECT stationid, stationname, points, username FROM station 
+        $singleStation = $this->db->getRows("SELECT stationid, stationname, stationadress, points, username FROM station 
         join user on user.userid = station.userid WHERE stationid = '$stationid'");
 
         return $singleStation;
@@ -133,13 +133,15 @@ class selectcontroller {
 
     public function getStudentsfromClass ($classname) {
 
-        $allStudentsFromClass = $this->db->getRows("SELECT studentid FROM student WHERE classid IN (SELECT classid FROM class WHERE classname like '$classname');");
+        $allStudentsFromClass = $this->db->getRows("SELECT studentid, studentnumber, classname FROM student JOIN
+        class ON class.classid = student.classid WHERE classname like '$classname';");
         return $allStudentsFromClass;
     }
 
     public function getSingleStudent ($studentnumber) {
 
-        $singleStudent = $this->db->getRows("SELECT studentid FROM student WHERE studentnumber like '$studentnumber';");
+        $singleStudent = $this->db->getRows("SELECT studentid, studentnumber, classname FROM student 
+        JOIN class ON class.classid = student.classid WHERE studentnumber like '$studentnumber';");
         return $singleStudent;
     }
 

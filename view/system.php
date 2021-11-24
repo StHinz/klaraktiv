@@ -125,6 +125,68 @@ $getStudents = $select->getAllAttendes();
 
 ?>
 
+<!-- Create PDF for Class -->
+<div class="klaraktiv-system">
+<form name="pdfclass" action="../controller/createpdf.php" method="post">
+
+<h3> PDF für Klasse</h3>
+<div class="form-row">
+<div class="alert alert-info" role="alert">
+ Hierbei wird ein Laufzettel für eine ganze Klasse erzeugt.
+</div>
+      </div>
+<div class="form-row">
+  <div class="form-group col-xl">
+  <select id='class' class="form-control" name='class'>
+  <option></option>
+      <?php
+        foreach ($getClass as $row){
+          echo '<option>'.$row['classname'].'</option>';
+        }
+        ?>
+  </select>
+  </div>
+  </div>
+  <div class="form-row">
+  <div class="form-group col-xl">
+  <input class="btn btn-success btn-block" type="submit" value="PDF erzeugen"></br>
+  </div>
+  </div>
+</form>
+  </div>
+
+  <!-- Create PDF for STudent -->
+<div class="klaraktiv-system">
+<form name="pdfstudent" action="../controller/createpdf.php" method="post">
+
+<h3> PDF für Schüler</h3>
+<div class="form-row">
+<div class="alert alert-info" role="alert">
+ Hierbei wird ein Laufzettel für einen einzelnen Schüler oder Schülerin erzeugt.
+</div>
+      </div>
+<div class="form-row">
+  <div class="form-group col-xl">
+  <select id="inputstudent" class="form-control" name="student">
+  <option></option>
+      <?php
+        foreach ($getStudents as $row){
+          echo '<option>'.$row['studentnumber'].'</option>';
+        }
+        ?>
+  </select>
+  </div>
+  </div>
+  <div class="form-row">
+  <div class="form-group col-xl">
+  <input class="btn btn-success btn-block" type="submit" value="PDF erzeugen"></br>
+  </div>
+  </div>
+</form>
+  </div>
+
+
+
 <!-- Delete Class -->
 <div class="klaraktiv-system">
 <form name="deleteclass" action="../controller/deleteclasscontroller.php" method="post">
@@ -171,7 +233,7 @@ $getStudents = $select->getAllAttendes();
 
 <div class="form-row">
 <div class="form-group col-md-12">
-<select id="inputClass" class="form-control" name="student">
+<select id="inputstudent" class="form-control" name="student">
   <option></option>
       <?php
         foreach ($getStudents as $row){

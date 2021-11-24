@@ -45,12 +45,13 @@ INSERT INTO student VALUES(2,"543329",1,1,4);
 CREATE TABLE IF NOT EXISTS station (
 stationid int auto_increment PRIMARY KEY,
 stationname varchar(100),
+stationadress varchar(100),
 points int(3),
 userid int,
 FOREIGN KEY (userid) REFERENCES user(userid)
 );
 
-INSERT INTO station VALUES(1,"Fussball",2,3);
+INSERT INTO station VALUES(1,"Fussball","s.Oliver-Arena",2,3);
 
 
 CREATE TABLE IF NOT EXISTS student_station (

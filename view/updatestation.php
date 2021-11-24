@@ -69,6 +69,12 @@ $userTeacher = $getStationID->getUserTeacher();
     <input type="text" class="form-control" placeholder="Bezeichnung" name='stationname' value="<?php echo $station[0]['stationname'] ?>">
 </div>
 
+<div class="form-group">
+    <label for="formGroupExampleInput">Ort</label>
+    <input type="text" class="form-control" placeholder="Adresse" name='adress' value="<?php echo $station[0]['stationadress'] ?>">
+</div>
+
+
 <!-- Update points -->
   <div class="form-group">
     <label for="exampleFormControlSelect1">Punkte</label>

@@ -68,6 +68,11 @@ $userTeacher = $getUserTeacher->getUserTeacher();
     <input type="text" class="form-control" placeholder="Bezeichnung" name='station'>
 </div>
 
+<div class="form-group">
+    <label for="formGroupExampleInput">Ort</label>
+    <input type="text" class="form-control" placeholder="Ort" name='adress'>
+</div>
+
 <!-- add points -->
   <div class="form-group">
     <label for="exampleFormControlSelect1">Punkte</label>

@@ -13,7 +13,7 @@ class updatedb {
 
     }
 
-    public function updatestation($getStationID,$getStationName,$getPoints,$getUser) {
+    public function updatestation($getStationID,$getStationName,$getPoints,$getUser,$getStationAdress) {
 
             // get DB-Entry USER
             $getUserIDFromDB = $this->db->getRows("SELECT userid from USER WHERE username like '$getUser'");
@@ -21,8 +21,8 @@ class updatedb {
 
             
             // update DB-Entry Station
-            $updateStation = $this->db->updateRow("UPDATE station SET stationname = '$getStationName', points = '$getPoints', userid = '$userID'
-            WHERE stationid = '$getStationID'");
+            $updateStation = $this->db->updateRow("UPDATE station SET stationname = '$getStationName', points = '$getPoints', userid = '$userID',
+            stationadress = '$getStationAdress' WHERE stationid = '$getStationID'");
 
     
             // back to site

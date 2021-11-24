@@ -143,6 +143,7 @@ echo "
 <thead>
 <tr>
 <th>Station</th>
+<th>Ort</th>
 <th>Punkte</th>
 <th>Verantwortlich</th>
 <th>Option</th>
@@ -152,6 +153,7 @@ echo "
 foreach ($allStations as $row) {
     echo "<tr>";
     echo "<td>".$row['stationname']."</td>";
+    echo "<td>".$row['stationadress']."</td>";
     echo "<td>".$row['points']."</td>";
     echo "<td>".$row['username']."</td>";
     echo "<td>

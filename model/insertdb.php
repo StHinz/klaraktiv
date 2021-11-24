@@ -40,7 +40,7 @@ class insertdb {
     }
 
 
-    public function addstation($getStation,$getPoints,$getUser) {
+    public function addstation($getStation,$getPoints,$getUser,$getAdress) {
 
         // get DB-Entry StationID
         $stationGetFromDB = $this->db->getRows("SELECT stationid FROM station WHERE stationname like '$getStation'");
@@ -54,7 +54,7 @@ class insertdb {
         // Check if Class exists, if not insert in DB
         if(empty($stationGetFromDB)) {
 
-        $insertStation = $this->db->updateRow("INSERT INTO station VALUES(NULL,'$getStation','$getPoints','$userID')");
+        $insertStation = $this->db->updateRow("INSERT INTO station VALUES(NULL,'$getStation','$getAdress','$getPoints','$userID')");
     
             // back to site
          header("location:../view/station.php?success=true"); 
