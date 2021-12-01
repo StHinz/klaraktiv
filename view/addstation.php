@@ -51,7 +51,7 @@ $userTeacher = $getUserTeacher->getUserTeacher();
 
 <div class="row">
     <div class="col-md-12 form-group">
-    <img src="../img/logo.png" alt="klaraoppenheimer" class="img-fluid">
+    <img src="../img/logo_klaraktiv.jpg" alt="klaraoppenheimer" class="img-fluid">
     </div>
     <div class="btn-group-vertical col-md-12">
     <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a></br>

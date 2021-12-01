@@ -144,7 +144,7 @@ $(document).ready( function () {
 
 <!-- Logo KOS -->
 <p>
-    <img src="../img/logo.png" alt="klaraoppenheimer" class="img-fluid">
+    <img src="../img/logo_klaraktiv.jpg" alt="klaraoppenheimer" class="img-fluid">
  
 </p>
 

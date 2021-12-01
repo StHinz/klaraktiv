@@ -10,11 +10,52 @@ $studentnumber = $_POST['student'];
 $query = new selectcontroller();
 // get all Stations
 $stations = $query->getAllStations();
-
+$stationtable='';
 
 if(empty($studentnumber)) {
 //get stundents from Class
 $dataquery = $query->getStudentsfromClass($classname);
+
+// Table with Classlist 
+$stationtable .= '
+<div style="page-break-before:always">
+
+<table cellpadding="4" cellspacing="0" style="width: 100%;" border="0" nobr="true">
+<tr>
+<td><h2>Klassenübersicht</h2><br>KlarAktiv-Tag 2022</td>
+<td style="text-align: right;"> <img src="../img/logo_klaraktiv.jpg" width= "200"> </td>
+</tr>
+</table>
+
+<table cellpadding="4" cellspacing="0" style="width: 100%;" border="1" nobr="true">
+ <tr style="background-color: #cccccc; padding:4px;">
+ <td style="padding:5px;"><b>Nr.</b></td>
+ <td style="padding:5px;"><b>Schülernummer</b></td>
+ <td style="text-align: center;"><b>Klasse</b></td>
+ <td style="text-align: center;"><b>Name</b></td>
+ <td style="text-align: center;"><b>Vermerk</b></td>
+ </tr> ';
+ $i=1;
+foreach($dataquery as $row) {
+
+   
+
+$stationtable .='
+
+ <tr nobr="true">
+ <td style="text-align: left">'.$i.'<br></td>
+<td style="text-align: left">'.$row['studentnumber'].'<br></td>
+<td style="text-align: left">'.$row['classname'].'<br></td>
+<td></td>
+<td></td>
+</tr>';
+
+$i = $i+1;
+}
+
+$stationtable .='</table></div>';
+
+
 } else {
 
 //get single Student
@@ -22,17 +63,21 @@ $dataquery = $query->getSingleStudent($studentnumber);
 };
 
 // Table
-$stationtable='';
+
 
 foreach($dataquery as $row) {
   
    $stationtable .= '
    <div style="page-break-before:always">
-<table cellpadding="5" cellspacing="0" style="width: 100%; ">
+   
+<table cellpadding="5" cellspacing="0" style="width: 100%"; border ="0">
  
  <tr>
  <td style="font-size:1.3em; font-weight: bold;">
-Laufzettel<br>
+Laufzettel<br>KlarAktiv-Tag 2022
+ </td>
+ <td style="text-align: center;">
+ <img src="../img/logo_klaraktiv.jpg" width= "200"> 
  </td>
  </tr>
 
@@ -42,6 +87,7 @@ Schülernummer: '.$row['studentnumber'].'<br>
 Klasse: '.$row['classname'].' <br>
  </td>
  <td>
+
  </td>
 </tr>
 </table>
