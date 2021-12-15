@@ -98,6 +98,15 @@ $userTeacher = $getUserTeacher->getUserTeacher();
     </select>
   </div>
 
+
+<!-- add Inforamtions -->
+<div class="form-group">
+<label for="exampleFormControlTextarea1">Stationsinformationen</label>
+    <textarea class="form-control" name="information" rows="5"></textarea>
+  </div>
+
+
+
 <!-- Buttons -->
   <div class='form-group'>
         <input class="btn btn-success btn-block" type="submit" value="Speichern"></br>

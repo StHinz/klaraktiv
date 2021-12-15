@@ -52,6 +52,13 @@ $userStation =$getAllstations->getStationfromUser($_SESSION['username']);
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
+<!-- collapse -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
 </head>
 
 <title>klaraktiv - Punkte vergeben</title>
@@ -61,15 +68,43 @@ $userStation =$getAllstations->getStationfromUser($_SESSION['username']);
 <div class="klaraktiv-container">
 
 <div class="row">
+
     <div class="col-md-12 form-group">
     <img src="../img/logo_klaraktiv.jpg" alt="klaraoppenheimer" class="img-fluid">
     </div>
+
     <div class="btn-group-vertical col-md-12">
     <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a></br>
     </div>  
+
+    <!-- Stationsinformationen -->
+    <div class="btn-group-vertical col-md-12">
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#info">Stationsinfo</button>
+    <div id="info" class="collapse in">
+    
+    <div class="alert alert-secondary" role="alert">
+    
+    <?php 
+    if (empty($userStation[0]['stationid'])) {
+     echo "Der Nutzer ist keiner Station zugewiesen und erhält daher keinen spezifischen Informationen.";
+    } else {
+    echo $userStation[0]['information'];}
+    ?>
+    </div>
+
+    </div>
+    </div>
+
 </div>
 
+
+
+
+
+
+
 <!-- Form -->
+<p>
 <!-- add student -->
 <form name="addpoints" action="../controller/addpointscontroller.php" method="post">
   <div class="form-group">

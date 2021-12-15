@@ -11,6 +11,7 @@ $getStationName = $_POST['stationname'];
 $getStationadress = $_POST['adress'];
 $getPoints = $_POST['points'];
 $getUser =$_POST['user'];
+$getInfo = $_POST['information'];
 
 
 if(empty($getUser)){
@@ -21,7 +22,7 @@ if(empty($getUser)){
 
 $updatestation = new updatedb();
 
-$updatestation->updatestation($getStationID,$getStationName,$getPoints,$getUser,$getStationadress); 
+$updatestation->updatestation($getStationID,$getStationName,$getPoints,$getUser,$getStationadress,$getInfo); 
 
 } 
 

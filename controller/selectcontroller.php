@@ -67,7 +67,7 @@ class selectcontroller {
 
     public function getAllStations() {
 
-        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, username FROM station JOIN user ON user.userid = station.userid");
+        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, username FROM station JOIN user ON user.userid = station.userid");
     
         return $allStations;
     
@@ -75,7 +75,7 @@ class selectcontroller {
 
     public function getSingelStation($stationid) {
 
-        $singleStation = $this->db->getRows("SELECT stationid, stationname, stationadress, points, username FROM station 
+        $singleStation = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, username FROM station 
         join user on user.userid = station.userid WHERE stationid = '$stationid'");
 
         return $singleStation;
@@ -119,7 +119,7 @@ class selectcontroller {
 
     public function getStationfromUser($username){
 
-        $stationfromuser = $this->db->getRows("SELECT stationid, stationname, points, username FROM station 
+        $stationfromuser = $this->db->getRows("SELECT stationid, stationname, points, information, username FROM station 
         join user on user.userid = station.userid WHERE username like '$username'");
 
         return $stationfromuser;

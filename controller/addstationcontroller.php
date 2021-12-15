@@ -10,6 +10,7 @@ $getStation = $_POST['station'];
 $getPoints = $_POST['points'];
 $getUser = $_POST['user'];
 $getAdress = $_POST['adress'];
+$getInfo = $_POST['information'];
 
 
 if(empty($getStation) || empty($getPoints) || empty($getUser)) {
@@ -21,7 +22,7 @@ if(empty($getStation) || empty($getPoints) || empty($getUser)) {
 
 
     $insterstation =  new insertdb();
-    $insterstation->addstation($getStation,$getPoints,$getUser,$getAdress);
+    $insterstation->addstation($getStation,$getPoints,$getUser,$getAdress,$getInfo);
 
 }
 

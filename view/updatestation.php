@@ -104,6 +104,12 @@ $userTeacher = $getStationID->getUserTeacher();
     </select>
   </div>
 
+<!-- update Inforamtions -->
+<div class="form-group">
+<label for="exampleFormControlTextarea1">Stationsinformationen</label>
+    <textarea class="form-control" name="information" rows="5" value=""><?php echo $station[0]['information'] ?></textarea>
+  </div>
+
 <!-- Buttons -->
   <div class='form-group'>
         <input class="btn btn-success btn-block" type="submit" value="Speichern"></br>
