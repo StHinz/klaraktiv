@@ -146,6 +146,7 @@ echo "
 <th>Ort</th>
 <th>Punkte</th>
 <th>Verantwortlich</th>
+<th>Status</th>
 <th>Option</th>
 </tr>
 </thead>";
@@ -156,6 +157,12 @@ foreach ($allStations as $row) {
     echo "<td>".$row['stationadress']."</td>";
     echo "<td>".$row['points']."</td>";
     echo "<td>".$row['username']."</td>";
+    if($row['stationstatus'] == 1) {
+      echo "<td><i class='fas fa-check-circle' style='color:green'></i></td>";
+
+  } else {
+      echo "<td><i class='fas fa-times-circle' style='color:red'></i></td>";
+  }
     echo "<td>
     <form action='../controller/deletestation.php' method='POST'><input type='hidden' name='stationid' value=".$row['stationid'].">
     <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>

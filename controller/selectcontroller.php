@@ -48,11 +48,11 @@ class selectcontroller {
 
         $data_points_students = array();
 
-        $bestStudents = $this->db->getRows("SELECT studentnumber, SUM(points) AS summe, classname FROM student JOIN student_station 
+        $bestStudents = $this->db->getRows("SELECT studentnumber, SUM(points) AS summe, count(student_station.stationid) as diffstation, classname FROM student JOIN student_station 
         ON student.studentid = student_station.studentid JOIN station ON station.stationid = student_station.stationid
         JOIN class ON class.classid = student.classid
         WHERE student.studentstatus = 1
-        GROUP BY 1 ORDER BY summe DESC LIMIT 5;");
+        GROUP BY 1 ORDER BY summe DESC , diffstation DESC LIMIT 5;");
 
         foreach($bestStudents as $row) {        
             /* Push the results in our array */
@@ -67,7 +67,7 @@ class selectcontroller {
 
     public function getAllStations() {
 
-        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, username FROM station JOIN user ON user.userid = station.userid");
+        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, stationstatus, username FROM station JOIN user ON user.userid = station.userid");
     
         return $allStations;
     
@@ -150,6 +150,13 @@ class selectcontroller {
         $getPasswordHash = $this->db->getRows("SELECT userpassword FROM user WHERE username like '$username'");
         return $getPasswordHash;
 
+
+    }
+
+    public function getStationStatus() {
+
+        $getStationStatus = $this->db->getRows("SELECT stationstatus FROM Station");
+        return $getStationStatus;
 
     }
 }

@@ -12,6 +12,9 @@ $dataPoints = new selectcontroller();
 ?>
 
 <html>
+	<!-- automatisch aktualisieren -->
+<meta http-equiv="refresh" content="30" />
+
 <head>
 
 <!-- CSS klaraktiv -->
@@ -47,7 +50,7 @@ var chartclass = new CanvasJS.Chart("chartContainerclass", {
 		indexLabelPlacement: "inside",
 		indexLabelFontWeight: "bolder",
 		indexLabelFontColor: "white",
-		dataPoints: <?php echo json_encode($dataPoints->getBestClass(), JSON_NUMERIC_CHECK); ?>
+		dataPoints: <?php echo json_encode(array_reverse($dataPoints->getBestClass()), JSON_NUMERIC_CHECK); ?>
   }]
 });
 
@@ -72,7 +75,7 @@ var chartstudents = new CanvasJS.Chart("chartContainerstudents", {
 		indexLabelPlacement: "inside",
 		indexLabelFontWeight: "bolder",
 		indexLabelFontColor: "white",
-		dataPoints: <?php echo json_encode($dataPoints->getBestStudent(), JSON_NUMERIC_CHECK); ?>
+		dataPoints: <?php echo json_encode(array_reverse($dataPoints->getBestStudent()), JSON_NUMERIC_CHECK); ?>
   }]
 });	
 

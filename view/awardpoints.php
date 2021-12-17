@@ -11,6 +11,14 @@ if(isset($_GET['abgewiesen']))
 </div>";
 }
 
+if(isset($_GET['stationstatus']))
+{
+ echo "
+ <div class='alert alert-danger alert-dismissible fade show' role='alert'>
+  Der Wettbewerb ist beendet! Es werden keine Punkte mehr angenommen!
+</div>";
+}
+
 if(isset($_GET['status']))
 {
  echo "
@@ -79,15 +87,16 @@ $userStation =$getAllstations->getStationfromUser($_SESSION['username']);
 
     <!-- Stationsinformationen -->
     <div class="btn-group-vertical col-md-12">
-    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#info">Stationsinfo</button>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#info">Meine Station Info</button>
     <div id="info" class="collapse in">
     
-    <div class="alert alert-secondary" role="alert">
-    
+    <div class="alert alert-secondary alert-dismissible fade show" role="alert">
+
     <?php 
     if (empty($userStation[0]['stationid'])) {
      echo "Der Nutzer ist keiner Station zugewiesen und erhält daher keinen spezifischen Informationen.";
     } else {
+    echo "<b>".$userStation[0]['stationname']."</b><br>";
     echo $userStation[0]['information'];}
     ?>
     </div>

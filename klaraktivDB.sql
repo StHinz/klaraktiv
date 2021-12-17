@@ -18,7 +18,7 @@ roleid int,
 FOREIGN KEY(roleid) REFERENCES role(roleid)
 );
 
-insert into  user VALUES(NULL,"programmer", MD5("test"),1), (NULL,"teacheradmin", MD5("test"),2),(NULL,"teacher1", MD5("test"),3)
+insert into  user VALUES(NULL,"programmer", MD5("test"),1), (NULL,"BHoffmann", MD5("kos1138"),1), (NULL,"teacheradmin", MD5("test"),2),(NULL,"teacher1", MD5("test"),3)
 ,(NULL,"teacher2", MD5("test"),3); 
 
 CREATE TABLE IF NOT EXISTS class (
@@ -48,11 +48,12 @@ stationname varchar(100),
 stationadress varchar(100),
 points int(3),
 information text,
+stationstatus tinyint,
 userid int,
 FOREIGN KEY (userid) REFERENCES user(userid)
 );
 
-INSERT INTO station VALUES(1,"Fussball","s.Oliver-Arena",2,"Hier stehte eine Information",3);
+INSERT INTO station VALUES(1,"Fussball","s.Oliver-Arena",2,"Hier stehte eine Information",1,3);
 
 
 CREATE TABLE IF NOT EXISTS student_station (

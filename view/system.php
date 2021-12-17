@@ -122,8 +122,29 @@ $select = new selectcontroller();
 $getClass = $select->getAllClass();
 $getStations = $select->getAllStations();
 $getStudents = $select->getAllAttendes();
+$getStationStatus = $select->getStationStatus();
 
 ?>
+<!-- Lock System -->
+<div class="klaraktiv-system">
+
+<div class="form-row">
+<h3> Wettebwerb beenden</h3>
+<div class="col-md-12 form-group">
+
+<?php
+if($getStationStatus[0]['stationstatus'] == 0) {
+  echo '
+<a href="../controller/stationstatuscontroller.php" class="btn btn-success btn-block" role="button" aria-disabled="true">Stationen aktivieren</a>';
+} else {
+  echo '
+  <a href="../controller/stationstatuscontroller.php" class="btn btn-danger btn-block" role="button" aria-disabled="true">Stationen deaktivieren</a>';
+  } 
+?>
+</div>
+</div>
+</div>
+
 
 <!-- Create PDF for Class -->
 <div class="klaraktiv-system">

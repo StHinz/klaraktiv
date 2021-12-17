@@ -54,7 +54,7 @@ class insertdb {
         // Check if Class exists, if not insert in DB
         if(empty($stationGetFromDB)) {
 
-        $insertStation = $this->db->updateRow("INSERT INTO station VALUES(NULL,'$getStation','$getAdress','$getPoints','$getInfo','$userID')");
+        $insertStation = $this->db->updateRow("INSERT INTO station VALUES(NULL,'$getStation','$getAdress','$getPoints','$getInfo',1,'$userID')");
     
             // back to site
          header("location:../view/station.php?success=true"); 
