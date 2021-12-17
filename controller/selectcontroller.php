@@ -67,7 +67,7 @@ class selectcontroller {
 
     public function getAllStations() {
 
-        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, stationstatus, username FROM station JOIN user ON user.userid = station.userid");
+        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, stationstatus, username FROM station JOIN user ON user.userid = station.userid Order By stationname");
     
         return $allStations;
     

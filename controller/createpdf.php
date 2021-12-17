@@ -23,10 +23,14 @@ $stationtable .= '
 <table cellpadding="4" cellspacing="0" style="width: 100%;" border="0" nobr="true">
 <tr>
 <td><h2>Klassenübersicht</h2><br>KlarAktiv-Tag 2022</td>
-<td style="text-align: right;"> <img src="../img/logo_klaraktiv.jpg" width= "200"> </td>
+<td style="text-align: right;"> <img src="../img/logo_klaraktiv.jpg" width= "150"> </td>
 </tr>
 </table>
-
+<b>Hinweise für Klassenleiter</b>
+<ul>
+<li>Bitte weisen Sie selbstständig den individuellen Schülernummern Ihre Schülerinnen und Schüler aus der Klasse zu.</li>
+<li>Melden Sie der Leitung am Druchführungstag ggf. abwesende bzw. erkrankte Schülerinnen und Schüler.</li>
+</ul>
 <table cellpadding="4" cellspacing="0" style="width: 100%;" border="1" nobr="true">
  <tr style="background-color: #cccccc; padding:4px;">
  <td style="padding:5px;"><b>Nr.</b></td>
@@ -77,7 +81,7 @@ foreach($dataquery as $row) {
 Laufzettel<br>KlarAktiv-Tag 2022
  </td>
  <td style="text-align: center;">
- <img src="../img/logo_klaraktiv.jpg" width= "200"> 
+ <img src="../img/logo_klaraktiv.jpg" width= "150"> 
  </td>
  </tr>
 

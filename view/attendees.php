@@ -102,7 +102,7 @@ $(document).ready( function () {
             extend: 'copy',
             text: '<i class="fas fa-copy"></i>',
             exportOptions: {
-                    columns: [ 1, 0, 2, 3]
+                    columns: [ 0, 1, 2, 3]
                 }
         },
           {
@@ -111,7 +111,7 @@ $(document).ready( function () {
             autoFilter: true,
             sheetName: 'Teilnehmer KlarAktiv-Tag',
             exportOptions: {
-                    columns: [  1, 0, 2,3 ]
+                    columns: [  0, 1, 2, 3 ]
                 }
         },
           {
@@ -121,7 +121,7 @@ $(document).ready( function () {
             orientation: 'landscape',
             pageSize: 'EXECUTIVE',
             exportOptions: {
-                    columns: [ 0, 1, 2,3 ]
+                    columns: [ 0, 1, 2, 3 ]
                 }
           }
     
