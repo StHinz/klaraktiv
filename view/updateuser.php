@@ -92,5 +92,10 @@ $role = $getUser->getAllRoles();
 
 </div>
 
+<!-- Footer -->
+<?php
+    include './_include/footer.php';
+?>
+
 </body>
 </html>

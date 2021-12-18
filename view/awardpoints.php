@@ -151,6 +151,9 @@ $user= $_SESSION['username'];
 </form>
 
 </div>
-
+<!-- Footer -->
+<?php
+    include './_include/footer.php';
+?>
 </body>
 </html>

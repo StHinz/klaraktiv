@@ -121,5 +121,10 @@ $userTeacher = $getStationID->getUserTeacher();
 
 </div>
 
+<!-- Footer -->
+<?php
+    include './_include/footer.php';
+?>
+
 </body>
 </html>

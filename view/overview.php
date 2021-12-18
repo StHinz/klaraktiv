@@ -109,5 +109,10 @@ chartstudents.render();
     margin-right: auto; padding-top: 100px"></div>
 
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+<!-- Footer -->
+<?php
+    include './_include/footer.php';
+?>
 </body>
 </html>     

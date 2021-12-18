@@ -55,6 +55,9 @@ if($role == 'Superadmin') {
 
 
 </div>
-
+<!-- Footer -->
+<?php
+    include './_include/footer.php';
+?>
 </body>
 </html>

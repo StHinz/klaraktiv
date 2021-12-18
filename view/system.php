@@ -299,7 +299,10 @@ if($getStationStatus[0]['stationstatus'] == 0) {
 </form>
 </div>
 
-
+<!-- Footer -->
+<?php
+    include './_include/footer.php';
+?>
 
 
 </body>

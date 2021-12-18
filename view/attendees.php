@@ -221,7 +221,10 @@ echo "</tr></table></div>";
 ?>
 
 </div>
-
+<!-- Footer -->
+<?php
+   include './_include/footer.php';
+?>
 
 
 </body>

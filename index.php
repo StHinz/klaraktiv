@@ -55,5 +55,9 @@ if(isset($_GET['abgewiesen']))
     </form>
 </div>
 
+<?php
+    include './view/_include/footer.php';
+?>
+
 </body>
 </html>

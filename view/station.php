@@ -177,6 +177,10 @@ foreach ($allStations as $row) {
 
 </div>
 
+<!-- Footer -->
+<?php
+    include './_include/footer.php';
+?>
 
 
 </body>

@@ -77,6 +77,8 @@ if(isset($_GET['empty']))
 </form>
 
 </div>
-
+<?php
+    include './_include/footer.php';
+?>
 </body>
 </html>
