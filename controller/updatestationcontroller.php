@@ -1,7 +1,7 @@
 
 <?php
 
-require '/xampp/htdocs/klaraktiv/model/updatedb.php';
+require '../model/updatedb.php';
 
 
 

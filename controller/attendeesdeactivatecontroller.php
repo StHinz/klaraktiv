@@ -1,7 +1,7 @@
 
 <?php
 
-require '../Model/database.php';
+require '../model/database.php';
 
 $db =  new Database();
 

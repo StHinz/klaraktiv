@@ -1,7 +1,7 @@
 <?php 
 require "../session.inc.php"; 
-//require "../Controller/overviewcontroller.php";
-require "../Controller/selectcontroller.php";
+//require "../controller/overviewcontroller.php";
+require "../controller/selectcontroller.php";
 
 //$dataPointsclass = $data_points_class;
 //$dataPointsstudents = $data_points_students;

@@ -1,7 +1,7 @@
 
 <?php
 
-require '../Model/insertdb.php';
+require '../model/insertdb.php';
 require './selectcontroller.php';
 
 // get Status from DB

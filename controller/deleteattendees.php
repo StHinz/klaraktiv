@@ -1,7 +1,7 @@
 
 <?php
 
-require '../Model/deletedb.php';
+require '../model/deletedb.php';
 
 $db =  new Database();
 

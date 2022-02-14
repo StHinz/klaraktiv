@@ -155,7 +155,7 @@ class selectcontroller {
 
     public function getStationStatus() {
 
-        $getStationStatus = $this->db->getRows("SELECT stationstatus FROM Station");
+        $getStationStatus = $this->db->getRows("SELECT stationstatus FROM station");
         return $getStationStatus;
 
     }
