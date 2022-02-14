@@ -10,7 +10,7 @@ rolename varchar(45)
 
 insert into  role VALUES(1,"Superadmin"),(2,"Admin"),(3,"Lehrer"),(4,"Schueler"); 
 
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE IF NOT EXISTS userdb (
 userid INT auto_increment PRIMARY KEY,
 username varchar(12),
 userpassword varchar(255),
@@ -18,7 +18,7 @@ roleid int,
 FOREIGN KEY(roleid) REFERENCES role(roleid)
 );
 
-insert into  user VALUES(NULL,"programmer", MD5("test"),1), (NULL,"BHoffmann", MD5("kos1138"),1), (NULL,"teacheradmin", MD5("test"),2),(NULL,"teacher1", MD5("test"),3)
+insert into  userdb VALUES(NULL,"SHinz", MD5("thx1138#2022"),1), (NULL,"BHoffmann", MD5("kos1138"),1), (NULL,"teacheradmin", MD5("test"),2),(NULL,"teacher1", MD5("test"),3)
 ,(NULL,"teacher2", MD5("test"),3); 
 
 CREATE TABLE IF NOT EXISTS class (
@@ -50,7 +50,7 @@ points int(3),
 information text,
 stationstatus tinyint,
 userid int,
-FOREIGN KEY (userid) REFERENCES user(userid)
+FOREIGN KEY (userid) REFERENCES userdb(userid)
 );
 
 INSERT INTO station VALUES(1,"Fussball","s.Oliver-Arena",2,"Hier stehte eine Information",1,3);

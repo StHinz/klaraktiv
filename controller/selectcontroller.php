@@ -67,7 +67,7 @@ class selectcontroller {
 
     public function getAllStations() {
 
-        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, stationstatus, username FROM station JOIN user ON user.userid = station.userid Order By stationname");
+        $allStations = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, stationstatus, username FROM station JOIN userdb ON userdb.userid = station.userid Order By stationname");
     
         return $allStations;
     
@@ -76,7 +76,7 @@ class selectcontroller {
     public function getSingelStation($stationid) {
 
         $singleStation = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, username FROM station 
-        join user on user.userid = station.userid WHERE stationid = '$stationid'");
+        join userdb on userdb.userid = station.userid WHERE stationid = '$stationid'");
 
         return $singleStation;
 
@@ -84,8 +84,8 @@ class selectcontroller {
        
     public function getAllUsers() {
     
-        $allUsers = $this->db->getRows("SELECT user.userid, username, userpassword, rolename, stationname FROM user LEFT JOIN role ON user.roleid = role.roleid
-        Left JOIN station ON user.userid = station.userid WHERE rolename NOT LIKE 'Superadmin'");
+        $allUsers = $this->db->getRows("SELECT userdb.userid, username, userpassword, rolename, stationname FROM userdb LEFT JOIN role ON userdb.roleid = role.roleid
+        Left JOIN station ON userdb.userid = station.userid WHERE rolename NOT LIKE 'Superadmin'");
 
         return $allUsers;
     
@@ -94,7 +94,7 @@ class selectcontroller {
 
     public function getSingleUser($userid) {
 
-        $singleUser = $this->db->getRows("SELECT userid, username, userpassword, rolename FROM user JOIN role ON user.roleid = role.roleid WHERE userid = '$userid'");
+        $singleUser = $this->db->getRows("SELECT userid, username, userpassword, rolename FROM userdb JOIN role ON userdb.roleid = role.roleid WHERE userid = '$userid'");
     
         return $singleUser;
     }
@@ -108,10 +108,10 @@ class selectcontroller {
 
     public function getUserTeacher(){
 
-        $userTeacher = $this->db->getRows("SELECT userid, username FROM user join role 
-        ON role.roleid = user.roleid WHERE(rolename like 'Lehrer' OR rolename like 'Admin' OR rolename) AND userID not IN (
-        SELECT user.userid from user JOIN station 
-        ON user.userid = station.userid);");
+        $userTeacher = $this->db->getRows("SELECT userid, username FROM userdb join role 
+        ON role.roleid = userdb.roleid WHERE(rolename like 'Lehrer' OR rolename like 'Admin' OR rolename) AND userID not IN (
+        SELECT userdb.userid from userdb JOIN station 
+        ON userdb.userid = station.userid);");
 
         return $userTeacher;
 
@@ -120,7 +120,7 @@ class selectcontroller {
     public function getStationfromUser($username){
 
         $stationfromuser = $this->db->getRows("SELECT stationid, stationname, points, information, username FROM station 
-        join user on user.userid = station.userid WHERE username like '$username'");
+        join userdb on userdb.userid = station.userid WHERE username like '$username'");
 
         return $stationfromuser;
     }

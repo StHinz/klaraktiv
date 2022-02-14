@@ -46,7 +46,7 @@ class insertdb {
         $stationGetFromDB = $this->db->getRows("SELECT stationid FROM station WHERE stationname like '$getStation'");
 
         // get DB-Entry UserID
-        $userGetFromDB = $this->db->getRows("SELECT * from user WHERE username like '$getUser'");
+        $userGetFromDB = $this->db->getRows("SELECT * from userdb WHERE username like '$getUser'");
         $userID = $userGetFromDB[0]['userid'];
 
     
@@ -107,7 +107,7 @@ class insertdb {
     public function addUser($getUser,$getPassword,$getRole) {
         
         // get DB-Entry
-        $userGetFromDB = $this->db->countRows("SELECT * from user WHERE username like '$getUser'");
+        $userGetFromDB = $this->db->countRows("SELECT * from userdb WHERE username like '$getUser'");
 
         if($userGetFromDB > 0) {
                    // back to site
@@ -118,7 +118,7 @@ class insertdb {
 
         $getRoleID = $this->db->getRows("SELECT * FROM role WHERE rolename like '$getRole'");
         $roleID = $getRoleID[0]['roleid'];
-        $insertUser = $this->db->updateRow("INSERT INTO  user VALUES(NULL,'$getUser', md5('$getPassword'),'$roleID')");
+        $insertUser = $this->db->updateRow("INSERT INTO  userdb VALUES(NULL,'$getUser', md5('$getPassword'),'$roleID')");
 
         header("location:../view/user.php?success=true");
 

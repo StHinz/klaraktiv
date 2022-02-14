@@ -60,7 +60,7 @@ if(isset($_GET['empty']))
     <label for="exampleFormControlSelect1">Anzahl Schüler</label>
     <select class="form-control" name='numberofstudents'>
       <?php
-         for($i=1; $i <33; $i++) {
+         for($i=1; $i <34; $i++) {
         echo '<option>'.$i.'</option>';
         }
         ?>

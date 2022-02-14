@@ -34,7 +34,7 @@ if(isset($_GET['abgewiesen']))
     <img src="./img/logo_klaraktiv.jpg" alt="klaraoppenheimer" class="img-fluid">
     </div>
 </div>
-<h1>Klaraktiv-Tag</h1>
+<h1>KlarAktiv-Tag</h1>
     <h2>Anmelden</h2>
     <form action="./controller/logincheck.php" method="post">
     <div class="row">

@@ -16,7 +16,7 @@ class updatedb {
     public function updatestation($getStationID,$getStationName,$getPoints,$getUser,$getStationAdress,$getInfo) {
 
             // get DB-Entry USER
-            $getUserIDFromDB = $this->db->getRows("SELECT userid from USER WHERE username like '$getUser'");
+            $getUserIDFromDB = $this->db->getRows("SELECT userid from userdb WHERE username like '$getUser'");
             $userID = $getUserIDFromDB[0]['userid'];
 
             
@@ -36,7 +36,7 @@ class updatedb {
         
           // check if new password, than hashen
     
-            $getpasswordhashdb = $this->db->getRows("SELECT userpassword FROM user WHERE userid like '$getUserID'");
+            $getpasswordhashdb = $this->db->getRows("SELECT userpassword FROM userdb WHERE userid like '$getUserID'");
             if($getUserPassword !== $getpasswordhashdb[0]['userpassword']) {
             $getUserPassword = md5($getUserPassword);
             }
@@ -50,7 +50,7 @@ class updatedb {
 
         // update row
             
-            $updateUser = $this->db->updateRow("UPDATE user SET username = '$getUserName', 
+            $updateUser = $this->db->updateRow("UPDATE userdb SET username = '$getUserName', 
             userpassword = '$getUserPassword', roleid = '$roleID' WHERE userid = '$getUserID'");
 
 
