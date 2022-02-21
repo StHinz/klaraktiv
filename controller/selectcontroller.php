@@ -147,7 +147,7 @@ class selectcontroller {
 
     public function getPasswordFromUser ($username) {
 
-        $getPasswordHash = $this->db->getRows("SELECT userpassword FROM user WHERE username like '$username'");
+        $getPasswordHash = $this->db->getRows("SELECT userpassword FROM userdb WHERE username like '$username'");
         return $getPasswordHash;
 
 

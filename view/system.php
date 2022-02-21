@@ -46,20 +46,28 @@ if(isset($_GET['abgewiesen']))
 </div>";
 }
 
-
-
 ?>
 
 <html>
 <head>
 
+
+
 <!-- CSS klaraktiv -->
 <link rel="stylesheet" href="../css/klaraktiv.css">
+
+<!-- Responsive Boostrap -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- bootstrap css -->
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Datatables -->
 
@@ -91,7 +99,7 @@ if(isset($_GET['abgewiesen']))
 <script src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/2.0.1/js/buttons.colVis.min.js"></script>
 
-  
+
 
 
 </head>
@@ -99,19 +107,27 @@ if(isset($_GET['abgewiesen']))
 <title>klaraktiv - Systemeinstellungen</title>
 
 <body>
-<!-- Logo KOS -->
-<div class="klaraktiv-container">
 
-<div class="row">
-    <div class="col-md-12 form-group">
-    <img src="../img/logo_klaraktiv.jpg" alt="klaraoppenheimer" class="img-fluid">
-    </div>
-    <div class="btn-group-vertical col-md-12">
-    <a href="./main.php" class="btn btn-info" role="button" aria-disabled="true">Hauptseite</a>
-    </div>  
-</div>
-</div>
-
+<!-- First Container - Logo & Logout -->
+  <div class="container-fluid pt-3 my-3 w-50"> 
+          <div class="d-flex justify-content-center">
+              <div class="row d-flex justify-content-center flex-nowrap">
+                  <div class="col-md">
+                  <ul class="nav nav-pills nav-fill justify-content-center">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle btn-primary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menü</a>
+                        <div class="dropdown-menu">
+                        <a class="dropdown-item" href="./main.php">Hauptseite</a>
+                        <a class="dropdown-item" href="../controller/logout.php">Logout</a>
+                        </div>
+                    </li>
+                    </ul>
+                      <img src="../img/logo_klaraktiv.jpg" class="img-fluid max-width: 100px" alt="Responsive image" max-width></br>
+                  </div>
+              </div>
+          </div>  
+  </div>
+<!-- END First Container -->
 
 <!-- MAIN -->
 
@@ -125,185 +141,237 @@ $getStudents = $select->getAllAttendes();
 $getStationStatus = $select->getStationStatus();
 
 ?>
-<!-- Lock System -->
-<div class="klaraktiv-system">
 
-<div class="form-row">
-<h3> Wettebwerb beenden</h3>
-<div class="col-md-12 form-group">
+<!-- Second Container - System Grid -->
+  <div class="container-fluid"> 
+        <div class="d-flex justify-content-center">
+            <div class="row d-flex justify-content-center flex-nowrap">
+                <div class="col-md">
 
-<?php
-if($getStationStatus[0]['stationstatus'] == 0) {
-  echo '
-<a href="../controller/stationstatuscontroller.php" class="btn btn-success btn-block" role="button" aria-disabled="true">Stationen aktivieren</a>';
-} else {
-  echo '
-  <a href="../controller/stationstatuscontroller.php" class="btn btn-danger btn-block" role="button" aria-disabled="true">Stationen deaktivieren</a>';
-  } 
-?>
-</div>
-</div>
-</div>
+            <!-- Card Collapse -->
 
+                    <div id="accordion md-accordion" role="tablist">
 
-<!-- Create PDF for Class -->
-<div class="klaraktiv-system">
-<form name="pdfclass" action="../controller/createpdf.php" method="post">
+                    <!-- Lock System -->
 
-<h3> PDF für Klasse</h3>
-<div class="form-row">
-<div class="alert alert-info" role="alert">
- Hierbei wird ein Laufzettel für eine ganze Klasse erzeugt.
-</div>
-      </div>
-<div class="form-row">
-  <div class="form-group col-xl">
-  <select id='class' class="form-control" name='class'>
-  <option></option>
-      <?php
-        foreach ($getClass as $row){
-          echo '<option>'.$row['classname'].'</option>';
-        }
-        ?>
-  </select>
-  </div>
-  </div>
-  <div class="form-row">
-  <div class="form-group col-xl">
-  <input class="btn btn-success btn-block" type="submit" value="PDF erzeugen"></br>
-  </div>
-  </div>
-</form>
-  </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h5 class="mb-0"><a class="collapsed" data-toggle="collapse" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">Wettebwerb beenden</a></h5>
+                            </div>
+                            <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md">
+                                            <?php
+                                                if($getStationStatus[0]['stationstatus'] == 0) {
+                                                echo '
+                                                <a href="../controller/stationstatuscontroller.php" class="btn btn-success btn-block" role="button" aria-disabled="true">Stationen aktivieren</a>';
+                                                } else {
+                                                echo '
+                                                <a href="../controller/stationstatuscontroller.php" class="btn btn-danger btn-block" role="button" aria-disabled="true">Stationen deaktivieren</a>';
+                                                } 
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Lock System -->
 
-  <!-- Create PDF for STudent -->
-<div class="klaraktiv-system">
-<form name="pdfstudent" action="../controller/createpdf.php" method="post">
+                    <!-- Create PDF for Class -->
 
-<h3> PDF für Schüler</h3>
-<div class="form-row">
-<div class="alert alert-info" role="alert">
- Hierbei wird ein Laufzettel für einen einzelnen Schüler oder Schülerin erzeugt.
-</div>
-      </div>
-<div class="form-row">
-  <div class="form-group col-xl">
-  <select id="inputstudent" class="form-control" name="student">
-  <option></option>
-      <?php
-        foreach ($getStudents as $row){
-          echo '<option>'.$row['studentnumber'].'</option>';
-        }
-        ?>
-  </select>
-  </div>
-  </div>
-  <div class="form-row">
-  <div class="form-group col-xl">
-  <input class="btn btn-success btn-block" type="submit" value="PDF erzeugen"></br>
-  </div>
-  </div>
-</form>
-  </div>
+                     <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h5 class="mb-0"><a class="collapsed" data-toggle="collapse" href="#CollapseTwo" aria-expanded="false" aria-controls="CollapseTwo">PDF für Klasse</a></h5>
+                            </div>
+                            <div id="CollapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-body">
+                                <div class="alert alert-info" role="alert">Hierbei wird ein Laufzettel für eine ganze Klasse erzeugt.</div>
+                                    
+                                     <form name="pdfclass" action="../controller/createpdf.php" method="post">
+                                       <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <select id='class' class="form-control" name='class'>
+                                                    <option></option>
+                                                        <?php foreach ($getClass as $row){
+                                                            echo '<option>'.$row['classname'].'</option>';
+                                                            }
+                                                            ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <input class="btn btn-success btn-block" type="submit" value="PDF erzeugen"></br>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Create PDF for Class -->
 
+                    <!-- Create PDF for Student -->
 
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h5 class="mb-0"><a class="collapsed" data-toggle="collapse" href="#CollapseThree" aria-expanded="false" aria-controls="CollapseThree">PDF für Teilnehmer</a></h5>
+                            </div>
+                            <div id="CollapseThree" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-body">
+                                <div class="alert alert-info" role="alert">Hierbei wird ein Laufzettel für einen einzelnen Schüler oder Schülerin erzeugt.</div>
+                                    
+                                    <form name="pdfstudent" action="../controller/createpdf.php" method="post">
+                                       <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <select id="inputstudent" class="form-control" name="student">
+                                                    <option></option>
+                                                        <?php
+                                                            foreach ($getStudents as $row){
+                                                            echo '<option>'.$row['studentnumber'].'</option>';
+                                                            }
+                                                            ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <input class="btn btn-success btn-block" type="submit" value="PDF erzeugen"></br>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Create PDF for Student -->                                       
+                    
+                    <!-- Delete Class -->
 
-<!-- Delete Class -->
-<div class="klaraktiv-system">
-<form name="deleteclass" action="../controller/deleteclasscontroller.php" method="post">
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h5 class="mb-0"><a class="collapsed" data-toggle="collapse" href="#CollapseFour" aria-expanded="false" aria-controls="CollapseFour">Klasse löschen</a></h5>
+                            </div>
+                            <div id="CollapseFour" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-body">
+                                    <div class="alert alert-danger" role="alert">Durch die Löschung der Klasse werden auch alle Teilnehmer der Klasse und deren Punkte gelöscht!</div>
+                                    
+                                    <form name="deleteclass" action="../controller/deleteclasscontroller.php" method="post">
+                                       <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <select id='class' class="form-control" name='class'>
+                                                    <option></option>
+                                                        <?php foreach ($getClass as $row){
+                                                            echo '<option>'.$row['classname'].'</option>';
+                                                            }
+                                                            ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <input type="password" placeholder="Passwort" class="form-control" name="password">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md">
+                                            <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- End Delete Class -->
+                    
+                    <!-- Delete Student with Points -->
 
-<h3> Klasse löschen </h3>
-<div class="form-row">
-<div class="alert alert-danger" role="alert">
- Durch die Löschung der Klasse werden auch alle Teilnehmer der Klasse und deren Punkte gelöscht!
-</div>
-</div>
-<div class="form-row">
-  <div class="form-group col-md-12">
-  <select id='class' class="form-control" name='class'>
-  <option></option>
-      <?php
-        foreach ($getClass as $row){
-          echo '<option>'.$row['classname'].'</option>';
-        }
-        ?>
-  </select>
-  </div>
-  </div>
-  <div class="form-row">
-  <div class="col-md-12 form-group">
-  <input type="password" placeholder="Passwort" class="form-control" name="password">
-  </div>
-  <div class="form-group col-md-12">
-  <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
-  </div>
-  </div>
-</form>
-  </div>
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h5 class="mb-0"><a class="collapsed" data-toggle="collapse" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">Teilnehmer löschen</a></h5>
+                            </div>
+                            <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-body">
+                                    <div class="alert alert-danger" role="alert"> Durch die Löschung des Teilnehmers werden auch alle erworbenen Punkte des Teilnehmers gelöscht!</div>
+                                    
+                                    <form name="deletestudent" action="../controller/deletestudentcontroller.php" method="post">
+                                       <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <select id='class' class="form-control" name='student'>
+                                                    <option></option>
+                                                    <?php
+                                                        foreach ($getStudents as $row){
+                                                        echo '<option>'.$row['studentnumber'].'</option>';
+                                                        }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <input type="password" placeholder="Passwort" class="form-control" name="password">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md">
+                                            <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Delete Student with Points -->
+                    
+                    <!-- Delete whole System with verify Code  -->
 
-<!-- Delete Student with points -->
+                        <div class="card">
+                            <div class="card-header" role="tab" id="headingOne">
+                                <h5 class="mb-0"><a class="collapsed" data-toggle="collapse" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">System zurücksetzen</a></h5>
+                            </div>
+                            <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                <div class="card-body">
+                                    <div class="alert alert-danger" role="alert"> <b>Achtung! </b>Alle Stationen, Teilnehmer und erworbenen Punkte werden unwiderruflich gelöscht!</div>
+                                    
+                                    <form name="deletestudent" action="../controller/resetcontroller.php" method="post">
+                                        <div class="form-row">
+                                            <div class="form-group col-md">
+                                                <input type="password" placeholder="Passwort" class="form-control" name="password">
+                                            </div>
+                                        </div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md">
+                                            <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>        </br>
+                    <!-- Delete Delete whole System with verify Code  -->
+                    
+                                             
+                    </div>
+                 </div>
+            </div>
+        </div>
+    </div>  
 
-<div class="klaraktiv-system">
-<form name="deletestudent" action="../controller/deletestudentcontroller.php" method="post">
-<h3> Teilnehmer löschen </h3>
-<div class="form-row">
-<div class="alert alert-danger" role="alert">
- Durch die Löschung des Teilnehmers werden auch alle erworbenen Punkte des Teilnehmers gelöscht!
-</div>
-      </div>
-
-<div class="form-row">
-<div class="form-group col-md-12">
-<select id="inputstudent" class="form-control" name="student">
-  <option></option>
-      <?php
-        foreach ($getStudents as $row){
-          echo '<option>'.$row['studentnumber'].'</option>';
-        }
-        ?>
-  </select>
-  </div>
-      </div>
-      <div class="form-row">
-  <div class="col-md-12 form-group">
-            <input type="password" placeholder="Passwort" class="form-control" name="password">
-      </div>
-      </div>
-      <div class="form-row">
-  <div class="form-group col-md-12">
-  <input class="btn btn-danger btn-block" type="submit" value="löschen"></br>
-  </div>
-  
-</div>
-</form>
-</div>
-
-<!-- Delete whole System with verify Code  -->
-
-
-<div class="klaraktiv-system">
-<form name="deletestudent" action="../controller/resetcontroller.php" method="post">
-<h3> System zurücksetzen</h3>
-<div class="form-row">
-<div class="alert alert-danger" role="alert">
- <b>Achtung! </b>Alle Stationen, Teilnehmer und erworbenen Punkte werden unwiderruflich gelöscht!
-</div>
-<div class="form-group col-md-12">
-<input type="password" class="form-control" placeholder="Passwort" name='password'>
-      </div>
-  <div class="form-group col-md-12">
-  <input class="btn btn-danger btn-block" type="submit" value="Reset"></br>
-  </div>
-  
-</div>
-</form>
-</div>
+<!-- END Second Container -->
 
 <!-- Footer -->
-<?php
-    include './_include/footer.php';
-?>
-
+        <div class="container-fluid"> 
+            <div class="d-flex justify-content-center">
+                <div class="row d-flex justify-content-center flex-nowrap">
+                    <div class="col-md">
+                    <footer class="bg-light text-center text-lg-start">
+                        © Klara-Oppenheimer-Schule<br>  
+                            <a class="text-dark" href="https://www.klara-oppenheimer-schule.de/index.php/impressum/">Impressum</a><br>
+                            <a class="text-dark" href="https://www.klara-oppenheimer-schule.de/index.php/datenschutzerklaerung/">Datenschutzerklärung</a>
+                    </footer>
+                    </div>
+                </div>
+            </div>
+<!-- End Footer --> 
 
 </body>
 </html>
