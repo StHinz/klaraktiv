@@ -21,6 +21,17 @@ class selectcontroller {
 
     } 
   
+    public function getAllClasses(){
+
+        $AllClasses = $this->db->getRows("SELECT class.classname,  round((sum(Points)/(SELECT count(student.studentid) from student where student.classid = class.classid AND student.studentstatus = 1 )),2) as points, COUNT(DISTINCT station.stationID) AS stations
+        FROM class LEFT JOIN student ON class.classid = student.classID
+        Left JOIN student_station ON student_station.studentid = student.studentid
+        Left JOIN station ON student_station.stationID = station.stationID
+        GROUP BY class.classID;");
+        
+        return $AllClasses; 
+
+    } 
     public function getBestClass(){
        
         $data_points_class = array();

@@ -33,8 +33,8 @@ if(isset($_GET['success']))
 </div>";
 }
 
-$attendees = new selectcontroller();
-$getAllattendees = $attendees->getAllAttendes();
+$classes = new selectcontroller();
+$getAllClasses = $classes->getAllClasses();
 ?>
 
 
@@ -90,7 +90,7 @@ $getAllattendees = $attendees->getAllAttendes();
 
 <script>
 $(document).ready( function () {
-    $('#attendeestable').DataTable( {
+    $('#classes').DataTable( {
         "language": {
           "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/German.json"
             }, 
@@ -110,26 +110,26 @@ $(document).ready( function () {
             extend: 'copy',
             text: '<i class="fas fa-copy"></i>',
             exportOptions: {
-                    columns: [ 0, 1, 2, 3]
+                    columns: [ 0, 1, 2]
                 }
         },
           {
             extend: 'excelHtml5',
             text: '<i class="fas fa-file-excel"></i>',
             autoFilter: true,
-            sheetName: 'Teilnehmer KlarAktiv-Tag',
+            sheetName: 'Klassen KlarAktiv-Tag',
             exportOptions: {
-                    columns: [  0, 1, 2, 3 ]
+                    columns: [  0, 1, 2 ]
                 }
         },
           {
             extend: 'pdfHtml5',
             text: '<i class="fas fa-file-pdf"></i>',
-            sheetName: 'Teilnehmer KlarAktiv-Tag',
+            sheetName: 'Klassen KlarAktiv-Tag',
             orientation: 'portrait',
             pageSize: 'EXECUTIVE',
             exportOptions: {
-                    columns: [ 0, 1, 2, 3 ]
+                    columns: [ 0, 1, 2 ]
                 }
           }
     
@@ -144,7 +144,7 @@ $(document).ready( function () {
 
 </head>
 
-<title>klaraktiv - Teilnehmer</title>
+<title>klaraktiv - Klassen</title>
 
 <body>
 
@@ -202,51 +202,20 @@ $(document).ready( function () {
 echo "
 
 <div class='table-responsive'>
-<table id='attendeestable' class='table'>
+<table id='classes' class='table'>
 <thead>
 <tr>
-<th>Schülernr.</th>
-<th>Klasse</th>
+<th>Klasse.</th>
 <th>Punkte</th>
 <th>Stationen</th>
-<th>Status</th>
-<th>Option</th>
 </tr>
 </thead>";
 
-foreach ($getAllattendees as $row) {
+foreach ($getAllClasses as $row) {
     echo "<tr>";
-    echo "<td>".$row['studentnumber']."</td>";
     echo "<td>".$row['classname']."</td>";
-    echo "<td>".$row['points']."</td>"; 
-    echo "<td>".$row['stations']."</td>";
-    if($row['studentstatus'] == 1) {
-        echo "<td><i class='fas fa-check-circle' style='color:green'></i></td>";
-
-    } else {
-        echo "<td><i class='fas fa-times-circle' style='color:red'></i></td>";
-    }
-
-    if($row['studentstatus'] == 1) {
-        echo "<td>
-        <form action='../controller/attendeesdeactivatecontroller.php' method='POST'><input type='hidden' name='studentid' value=".$row['studentid'].">
-        <button class='btn btn-sm btn-block btn-warning'>deaktiviern</button>
-        </form>
-    <form action='../controller/deleteattendees.php' method='POST'><input type='hidden' name='studentid' value=".$row['studentid'].">
-    <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>
-   </td></tr>";
-
-    } else {
-        echo "<td>
-        <form action='../controller/attendeesdeactivatecontroller.php' method='POST'><input type='hidden' name='studentid' value=".$row['studentid'].">
-        <button class='btn btn-sm btn-block btn-success'>aktivieren</button>
-        </form>
-        <form action='../controller/deleteattendees.php' method='POST'><input type='hidden' name='studentid' value=".$row['studentid'].">
-        <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>
-        </td></tr>";
-    }
-
-   
+    echo "<td>".$row['points']."</td>";
+    echo "<td>".$row['stations']."</td></tr>";
 
 }
 

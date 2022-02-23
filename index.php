@@ -36,7 +36,7 @@ if(isset($_GET['abgewiesen']))
         <div class="d-flex justify-content-center">
             <div class="row d-flex justify-content-center flex-nowrap">
                 <div class="col-md">
-                    <img src="./img/logo_klaraktiv.jpg" class="img-fluid max-width: 100px" alt="Responsive image" max-width>
+                    <img src="./img/logo_klaraktiv.jpg" width="250" height="auto" alt="Responsive image" max-width>
                 </div>
             </div>
         </div>  

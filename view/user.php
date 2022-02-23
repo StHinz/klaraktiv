@@ -136,7 +136,7 @@ $(document).ready( function () {
                         </div>
                     </li>
                     </ul>
-                      <img src="../img/logo_klaraktiv.jpg" class="img-fluid max-width: 100px" alt="Responsive image" max-width></br>
+                    <img src="../img/logo_klaraktiv.jpg" width="250" height="auto" alt="Responsive image" max-width></br>
                   </div>
               </div>
           </div>  

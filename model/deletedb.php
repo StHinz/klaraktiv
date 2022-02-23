@@ -36,6 +36,7 @@ class deletedb {
         try {
             $deleteUser = $this->db->updateRow("DELETE FROM userdb WHERE userid like '$getUserID'");
             
+            
             // back to site
             header("location:../view/user.php?delete=true");
             } catch (Exception $e) {
