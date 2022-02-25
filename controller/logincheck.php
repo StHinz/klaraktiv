@@ -6,10 +6,19 @@ try{
 $db = new database();
 $username = $_POST['username'];
 $password = $_POST['password'];
-$role = $db->getRows("SELECT rolename FROM role WHERE roleid = (SELECT roleid from userdb WHERE username like '$username')");
-$countrow  = $db->countRows("SELECT userid FROM userdb WHERE username like '$username'");
-$userID = $db->getRows("SELECT userid from userdb WHERE username like '$username'");
-$getPasswordHash = $db->getRows("SELECT userpassword FROM userdb WHERE username like '$username'");
+
+
+$role = $db->getRows("SELECT rolename FROM role WHERE roleid = (SELECT roleid from userdb WHERE username like ?)",
+array($username));
+
+$countrow  = $db->countRows("SELECT userid FROM userdb WHERE username like ?",
+array($username));
+
+$userID = $db->getRows("SELECT userid from userdb WHERE username like ?",
+array($username));
+
+$getPasswordHash = $db->getRows("SELECT userpassword FROM userdb WHERE username like ?",
+array($username));
 
 // password check decrypt
 

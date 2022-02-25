@@ -14,6 +14,7 @@ $host = "127.0.0.1", $dbname = "klaraktiv", $options = []) {
         $this->datab = new PDO('mysql:host='.$host.';dbname='.$dbname.';charset=utf8;port=3308', $username, $password, $options);
         $this->datab->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->datab->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+        $this->datab->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
     } catch (PDOException $e) {
        throw new Exception($e->getMessage());
     }

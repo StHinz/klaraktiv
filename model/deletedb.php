@@ -17,7 +17,8 @@ class deletedb {
 
     public function deletestudent($getStudentid) {
         try {
-            $deletstudent = $this->db->updateRow("DELETE FROM student WHERE studentID like '$getStudentid'");
+            $deletstudent = $this->db->updateRow("DELETE FROM student WHERE studentID like ?",
+        array($getStudentid));
 
             
             
@@ -34,7 +35,8 @@ class deletedb {
     public function deleteUSer($getUserID) {
 
         try {
-            $deleteUser = $this->db->updateRow("DELETE FROM userdb WHERE userid like '$getUserID'");
+            $deleteUser = $this->db->updateRow("DELETE FROM userdb WHERE userid like ?",
+        array($getUserID));
             
             
             // back to site
@@ -49,7 +51,8 @@ class deletedb {
     public function deletestation($getStationID) {
 
         try {
-            $deletestation = $this->db->updateRow("DELETE FROM Station WHERE stationid like '$getStationID'");
+            $deletestation = $this->db->updateRow("DELETE FROM Station WHERE stationid like ?",
+        array($getStationID));
             
             // back to site
             header("location:../view/station.php?delete=true");
@@ -63,7 +66,8 @@ class deletedb {
 
     public function deleteclass($getClass) {
         try {
-            $deleteclass = $this->db->updateRow("DELETE FROM class WHERE classname like '$getClass'");
+            $deleteclass = $this->db->updateRow("DELETE FROM class WHERE classname like ?",
+        array($getClass));
             
             // back to site
             header("location:../view/system.php?success=true");
@@ -77,7 +81,8 @@ class deletedb {
 
     public function deleteAttennde($getStudentid) {
         try {
-            $deletStudentFromContest = $this->db->updateRow("DELETE FROM student_station WHERE studentid like '$getStudentid'");
+        $deletStudentFromContest = $this->db->updateRow("DELETE FROM student_station WHERE studentid like ?",
+            array($getStudentid));
             
             // back to site
             header("location:../view/system.php?success=true");

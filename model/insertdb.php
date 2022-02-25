@@ -16,12 +16,13 @@ class insertdb {
 
     public function addclass($getClass, $numberofstudents) {
 
-        $getClassFromDB = $this->db->getRows("SELECT classid FROM class WHERE classname like '$getClass'");
+        $getClassFromDB = $this->db->getRows("SELECT classid FROM class WHERE classname like ?",
+        array($getClass));
 
         if(empty($getClassFromDB)) {
 
-            $insertClass = $this->db->updateRow("INSERT INTO class VALUES(NULL,'$getClass')");
-            $getClassFromDB = $this->db->getRows("SELECT classid FROM class WHERE classname like '$getClass'");
+            $insertClass = $this->db->updateRow("INSERT INTO class VALUES(NULL,?)", array($getClass));
+            $getClassFromDB = $this->db->getRows("SELECT classid FROM class WHERE classname like ?", array($getClass));
         } 
 
          //Insert Students 
@@ -31,7 +32,8 @@ class insertdb {
 
                 $genStudentNumber = rand(111111,999999);
                 $classID = $getClassFromDB[0]['classid'];
-                $insertStudent = $this->db->updateRow("INSERT INTO student VALUES (NULL,'$genStudentNumber',1,'$classID',4)");
+                $insertStudent = $this->db->updateRow("INSERT INTO student VALUES (NULL,?,1,?,4)",
+                array($genStudentNumber,$classID));
         
                 
         // back to site
@@ -43,10 +45,12 @@ class insertdb {
     public function addstation($getStation,$getPoints,$getUser,$getAdress,$getInfo) {
 
         // get DB-Entry StationID
-        $stationGetFromDB = $this->db->getRows("SELECT stationid FROM station WHERE stationname like '$getStation'");
+        $stationGetFromDB = $this->db->getRows("SELECT stationid FROM station WHERE stationname like ?",
+        array($getStation));
 
         // get DB-Entry UserID
-        $userGetFromDB = $this->db->getRows("SELECT * from userdb WHERE username like '$getUser'");
+        $userGetFromDB = $this->db->getRows("SELECT * from userdb WHERE username like ?",
+        array($getUser));
         $userID = $userGetFromDB[0]['userid'];
 
     
@@ -54,7 +58,8 @@ class insertdb {
         // Check if Class exists, if not insert in DB
         if(empty($stationGetFromDB)) {
 
-        $insertStation = $this->db->updateRow("INSERT INTO station VALUES(NULL,'$getStation','$getAdress','$getPoints','$getInfo',1,'$userID')");
+        $insertStation = $this->db->updateRow("INSERT INTO station VALUES(NULL,?,?,?,?,1,?)",
+        array($getStation,$getAdress,$getPoints,$getInfo,$userID));
     
             // back to site
          header("location:../view/station.php?success=true"); 
@@ -69,10 +74,10 @@ class insertdb {
 
     public function addPoints($getStudent, $getStation) {
 
-        $getStudentFromDB = $this->db->countRows("SELECT studentid FROM student WHERE studentnumber like '$getStudent'");
-        $getStudentIDFromDB = $this->db->getRows("SELECT studentid FROM student WHERE studentnumber like '$getStudent'");
-        $getStationIDFromDB = $this->db->getRows("SELECT stationid FROM station WHERE stationname like '$getStation'");
-        $getStatusFromDB = $this->db->getRows("SELECT studentstatus FROM student WHERE studentnumber like '$getStudent'");
+        $getStudentFromDB = $this->db->countRows("SELECT studentid FROM student WHERE studentnumber like ?",array($getStudent));
+        $getStudentIDFromDB = $this->db->getRows("SELECT studentid FROM student WHERE studentnumber like ?",array($getStudent));
+        $getStationIDFromDB = $this->db->getRows("SELECT stationid FROM station WHERE stationname like ?",array($getStation));
+        $getStatusFromDB = $this->db->getRows("SELECT studentstatus FROM student WHERE studentnumber like ?",array($getStudent));
 
         // Check if Student exists
         if($getStudentFromDB == 0) {
@@ -87,7 +92,8 @@ class insertdb {
                 $studentid = $getStudentIDFromDB[0]['studentid'];
                 $stationid = $getStationIDFromDB[0]['stationid']; 
  
-                $insertPointsStudent = $this->db->updateRow("INSERT INTO student_station VALUES (NULL,'$studentid','$stationid',now())");
+                $insertPointsStudent = $this->db->updateRow("INSERT INTO student_station VALUES (NULL,?,?,now())",
+                array($studentid,$stationid));
  
  
             // back to site
@@ -107,7 +113,7 @@ class insertdb {
     public function addUser($getUser,$getPassword,$getRole) {
         
         // get DB-Entry
-        $userGetFromDB = $this->db->countRows("SELECT * from userdb WHERE username like '$getUser'");
+        $userGetFromDB = $this->db->countRows("SELECT * from userdb WHERE username like ?",array($getUser));
 
         if($userGetFromDB > 0) {
                    // back to site
@@ -116,10 +122,15 @@ class insertdb {
 
         } else {
 
-        $getRoleID = $this->db->getRows("SELECT * FROM role WHERE rolename like '$getRole'");
+        $getRoleID = $this->db->getRows("SELECT * FROM role WHERE rolename like ?",array($getRole));
         $roleID = $getRoleID[0]['roleid'];
-        $insertUser = $this->db->updateRow("INSERT INTO  userdb VALUES(NULL,'$getUser', md5('$getPassword'),'$roleID')");
+        
+        
 
+        $insertUser = $this->db->updateRow("INSERT INTO  userdb VALUES(NULL,?, md5(?),?)",
+        array($getUser,$getPassword,$roleID));
+
+    
         header("location:../view/user.php?success=true");
 
         }

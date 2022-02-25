@@ -84,15 +84,16 @@ class selectcontroller {
     
     }
 
+
     public function getSingelStation($stationid) {
 
         $singleStation = $this->db->getRows("SELECT stationid, stationname, stationadress, points, information, username FROM station 
-        join userdb on userdb.userid = station.userid WHERE stationid = '$stationid'");
+        join userdb on userdb.userid = station.userid WHERE stationid = ?", array($stationid));
 
-        return $singleStation;
+    return $singleStation;
 
     } 
-       
+
     public function getAllUsers() {
     
         $allUsers = $this->db->getRows("SELECT userdb.userid, username, userpassword, rolename, stationname FROM userdb LEFT JOIN role ON userdb.roleid = role.roleid
@@ -105,7 +106,9 @@ class selectcontroller {
 
     public function getSingleUser($userid) {
 
-        $singleUser = $this->db->getRows("SELECT userid, username, userpassword, rolename FROM userdb JOIN role ON userdb.roleid = role.roleid WHERE userid = '$userid'");
+        $singleUser = $this->db->getRows("SELECT userid, username, userpassword, rolename 
+        FROM userdb JOIN role ON userdb.roleid = role.roleid WHERE userid = ?",
+        array($userid));
     
         return $singleUser;
     }
@@ -131,7 +134,8 @@ class selectcontroller {
     public function getStationfromUser($username){
 
         $stationfromuser = $this->db->getRows("SELECT stationid, stationname, points, information, username FROM station 
-        join userdb on userdb.userid = station.userid WHERE username like '$username'");
+        join userdb on userdb.userid = station.userid WHERE username like ?",
+        array($username));
 
         return $stationfromuser;
     }
@@ -145,20 +149,24 @@ class selectcontroller {
     public function getStudentsfromClass ($classname) {
 
         $allStudentsFromClass = $this->db->getRows("SELECT studentid, studentnumber, classname FROM student JOIN
-        class ON class.classid = student.classid WHERE classname like '$classname';");
+        class ON class.classid = student.classid WHERE classname like ?;",
+        array($classname));
+
         return $allStudentsFromClass;
     }
 
     public function getSingleStudent ($studentnumber) {
 
         $singleStudent = $this->db->getRows("SELECT studentid, studentnumber, classname FROM student 
-        JOIN class ON class.classid = student.classid WHERE studentnumber like '$studentnumber';");
+        JOIN class ON class.classid = student.classid WHERE studentnumber like ?;",
+        array($studentnumber));
         return $singleStudent;
     }
 
     public function getPasswordFromUser ($username) {
 
-        $getPasswordHash = $this->db->getRows("SELECT userpassword FROM userdb WHERE username like '$username'");
+        $getPasswordHash = $this->db->getRows("SELECT userpassword FROM userdb WHERE username like ?",
+         array($username));
         return $getPasswordHash;
 
 
