@@ -71,7 +71,7 @@
                                     <a href='./user.php' class='btn btn-warning btn-lg btn-block' role='button' aria-disabled='true'>Nutzerverwaltung</a></br>
                             ";
                             }
-                            if($role == 'Superadmin') {
+                            if($role == 'Superadmin' || $role == 'Admin') {
                                 echo "   
                                      <a href='./system.php' class='btn btn-warning btn-lg btn-block' role='button' aria-disabled='true'>System</a></br>
                             ";
