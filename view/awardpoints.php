@@ -134,6 +134,8 @@ $user= $_SESSION['username'];
                         <input type="text" class="form-control" placeholder="Schülernummer" name='student'>
                       </div>
 
+              
+
                   <!-- add station -->
                   <div class="form-group">	
                   <label for="station">Station</label>
