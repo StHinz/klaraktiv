@@ -51,7 +51,7 @@ class deletedb {
     public function deletestation($getStationID) {
 
         try {
-            $deletestation = $this->db->updateRow("DELETE FROM Station WHERE stationid like ?",
+            $deletestation = $this->db->updateRow("DELETE FROM station WHERE stationid like ?",
         array($getStationID));
             
             // back to site
@@ -108,7 +108,7 @@ class deletedb {
 
             
 
-            $deleteStation = $this->db->updateRow("DELETE FROM Station WHERE stationid >0");
+            $deleteStation = $this->db->updateRow("DELETE FROM station WHERE stationid >0");
 
            
             // back to site

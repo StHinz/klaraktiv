@@ -149,7 +149,7 @@ $(document).ready( function () {
       <div class="row d-flex justify-content-center flex-nowrap">
         <div class="col-md">
 
-<a class="btn btn-success" href="./adduser.php" role="button">Teilnehmer hinzufügen</a>
+<a class="btn btn-success" href="./adduser.php" role="button">Account hinzufügen</a>
 
         </div>
       </div>

@@ -65,11 +65,25 @@ $user= $_SESSION['username'];
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+<script src="../src/html5-qrcode.min.js"></script>
+
 </head>
 
 <title>klaraktiv - Punkte vergeben</title>
 
+
+
+
+
+
 <body>
+
+
+
+
 
 <!-- First Container - Logo & Logout -->
 <div class="container-fluid pt-3 my-3 w-50"> 
@@ -118,6 +132,20 @@ $user= $_SESSION['username'];
     </div>
 <!-- END First Container -->
 
+<div class="container-fluid"> 
+        <div class="d-flex justify-content-center">
+            <div class="row d-flex justify-content-center flex-nowrap">
+                <div class="col-md">
+
+                     <div sytle=" width:100%" id="reader"></div>
+                     
+                 </div>
+            </div>
+          </div>
+</div>
+
+
+
 
 
 <!-- Second Container - Button Grid -->
@@ -125,16 +153,22 @@ $user= $_SESSION['username'];
         <div class="d-flex justify-content-center">
             <div class="row d-flex justify-content-center flex-nowrap">
                 <div class="col-md">
-                  
+
+
+
+
+
+
+
+              <!-- Form -->
+                
                   <form name="addpoints" action="../controller/addpointscontroller.php" method="post">
-                      
+                     
                   <!-- add student -->
                       <div class="form-group">
                         <label for="student">Schülernummer</label>
-                        <input type="text" class="form-control" placeholder="Schülernummer" name='student'>
-                      </div>
-
-              
+                        <input type="text" class="form-control" placeholder="Schülernummer" name='student' id='student'>
+                                </div>
 
                   <!-- add station -->
                   <div class="form-group">	

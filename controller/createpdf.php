@@ -2,6 +2,7 @@
 require "../session.inc.php"; 
 require '../controller/selectcontroller.php';
 require '../tcpdf/tcpdf.php';
+include '../phpqrcode/qrlib.php';
 
 // get Data from Form
 $classname = $_POST['class'];
@@ -42,8 +43,6 @@ $stationtable .= '
  $i=1;
 foreach($dataquery as $row) {
 
-   
-
 $stationtable .='
 
  <tr nobr="true">
@@ -68,8 +67,12 @@ $dataquery = $query->getSingleStudent($studentnumber);
 
 // Table
 
-
+$j = 0;
 foreach($dataquery as $row) {
+   
+ 
+
+ 
   
    $stationtable .= '
    <div style="page-break-before:always">
@@ -89,9 +92,21 @@ Laufzettel<br>KlarAktiv-Tag 2022
 <td style="text-align: left">
 Schülernummer: '.$row['studentnumber'].'<br>
 Klasse: '.$row['classname'].' <br>
- </td>
- <td>
+</td>
+<td style=" text-align: center;">.';
 
+$path = '../qrcodes/';
+$file = $path."tempqr".$j.".png";
+$student = $row['studentnumber'];
+$j = $j+1;
+
+QRcode::png($student,$file,'m',5);
+$stationtable.= '<img src="'.$file.'">';
+
+
+
+
+$stationtable .= '
  </td>
 </tr>
 </table>
