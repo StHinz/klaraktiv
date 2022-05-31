@@ -77,7 +77,7 @@ if(isset($_GET['empty']))
   
 <div class="form-group">
     <label for="formGroupExampleInput">Nutzer</label>
-    <input type="text" class="form-control" placeholder="Nutzername" name='username'>
+    <input type="text" class="form-control" placeholder="Nutzername" name="username" data-mdb-showcounter="true" maxlength='12' >
 </div>
 
 <!-- add passwort -->

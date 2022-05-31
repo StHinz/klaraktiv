@@ -88,12 +88,12 @@ $userTeacher = $getUserTeacher->getUserTeacher();
   
 <div class="form-group">
     <label for="formGroupExampleInput">Station</label>
-    <input type="text" class="form-control" placeholder="Bezeichnung" name='station'>
+    <input type="text" class="form-control" placeholder="Bezeichnung" name='station' maxlength="20">
 </div>
 
 <div class="form-group">
     <label for="formGroupExampleInput">Ort</label>
-    <input type="text" class="form-control" placeholder="Ort" name='adress'>
+    <input type="text" class="form-control" placeholder="Ort" name='adress' maxlength="20">
 </div>
 
 <!-- add points -->
