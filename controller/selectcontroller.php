@@ -184,7 +184,7 @@ class selectcontroller {
         $getStudentsThroughDay = $this->db->getRows("SELECT studentnumber, classname, stationname, stationtime
         FROM student JOIN student_station ON student.studentid = student_station.studentid
         JOIN station ON station.stationid = student_station.stationid
-        JOIN class ON class.classid = student.studentid;");
+        JOIN class ON class.classid = student.classid;");
         return $getStudentsThroughDay;
 
 

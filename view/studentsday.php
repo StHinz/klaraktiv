@@ -203,7 +203,7 @@ foreach ($getStudentsDay as $row) {
     echo "<td>".$row['classname']."</td>";
     echo "<td>".$row['stationname']."</td>";
     echo "<td>".$row['stationtime']."</td>"; 
-  
+    echo "</tr>";
 
 }
 
