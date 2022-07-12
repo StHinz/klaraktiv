@@ -33,8 +33,8 @@ if(isset($_GET['success']))
 </div>";
 }
 
-$attendees = new selectcontroller();
-$getAllattendees = $attendees->getAllAttendes();
+$student = new selectcontroller();
+$getStudentsDay = $student->getStudentsThroughDay();
 ?>
 
 
@@ -144,7 +144,7 @@ $(document).ready( function () {
 
 </head>
 
-<title>klaraktiv - Teilnehmer</title>
+<title>klaraktiv - Teilnehmer über den Tag</title>
 
 <body>
 
@@ -159,8 +159,6 @@ $(document).ready( function () {
                         <a class="nav-link dropdown-toggle btn-primary" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Menü</a>
                         <div class="dropdown-menu">
                         <a class="dropdown-item" href="./main.php">Hauptseite</a>
-                        <a class="dropdown-item" href="./attendees.php">Teilnehmer</a>
-                        <a class="dropdown-item" href="./classes.php">Klassen</a>
                         <a class="dropdown-item" href="../controller/logout.php">Logout</a>
                         </div>
                     </li>
@@ -172,19 +170,6 @@ $(document).ready( function () {
   </div>
 <!-- END First Container -->
 
-<!-- Add User Button -->
-<div class="container-fluid pt-3 my-3 w-80"> 
-  <div class="d-flex justify-content-center">
-      <div class="row d-flex justify-content-center flex-nowrap">
-        <div class="col-md">
-
-<a class="btn btn-success" href="./addclass.php" role="button">Teilnehmer hinzufügen</a>
-
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- End Button -->
 
 <!-- table -->
 
@@ -205,50 +190,20 @@ echo "
 <table id='attendeestable' class='table'>
 <thead>
 <tr>
-<th>ID</th>
-<th>Schülernr.</th>
+<th>SchülerNr.</th>
 <th>Klasse</th>
-<th>Punkte</th>
-<th>Stationen</th>
-<th>Status</th>
-<th>Option</th>
+<th>Station</th>
+<th>Timestamp</th>
 </tr>
 </thead>";
 
-foreach ($getAllattendees as $row) {
+foreach ($getStudentsDay as $row) {
     echo "<tr>";
-    echo "<td>".$row['studentid']."</td>";
-    echo "<td>".$row['studentnumber']."</td>";
-    echo "<td>".$row['classname']."</td>";
-    echo "<td>".$row['points']."</td>"; 
-    echo "<td>".$row['stations']."</td>";
-    if($row['studentstatus'] == 1) {
-        echo "<td><i class='fas fa-check-circle' style='color:green'></i></td>";
-
-    } else {
-        echo "<td><i class='fas fa-times-circle' style='color:red'></i></td>";
-    }
-
-    if($row['studentstatus'] == 1) {
-        echo "<td>
-        <form action='../controller/attendeesdeactivatecontroller.php' method='POST'><input type='hidden' name='studentid' value=".$row['studentid'].">
-        <button class='btn btn-sm btn-block btn-warning'>deaktiviern</button>
-        </form>
-    <form action='../controller/deleteattendees.php' method='POST'><input type='hidden' name='studentid' value=".$row['studentid'].">
-    <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>
-   </td></tr>";
-
-    } else {
-        echo "<td>
-        <form action='../controller/attendeesdeactivatecontroller.php' method='POST'><input type='hidden' name='studentid' value=".$row['studentid'].">
-        <button class='btn btn-sm btn-block btn-success'>aktivieren</button>
-        </form>
-        <form action='../controller/deleteattendees.php' method='POST'><input type='hidden' name='studentid' value=".$row['studentid'].">
-        <button class='btn btn-sm btn-block btn-danger'>löschen</button></form>
-        </td></tr>";
-    }
-
-   
+    echo "<td>".$row['student.studentnumber']."</td>";
+    echo "<td>".$row['class.classname']."</td>";
+    echo "<td>".$row['station.stationname']."</td>";
+    echo "<td>".$row['student_station.stationtime']."</td>"; 
+  
 
 }
 

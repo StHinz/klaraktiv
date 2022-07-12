@@ -21,7 +21,7 @@ $dataquery = $query->getStudentsfromClass($classname);
 $stationtable .= '
 <div style="page-break-before:always">
 
-<table cellpadding="4" cellspacing="0" style="width: 100%;" border="0" nobr="true">
+<table cellpadding="4" cellspacing="0" style="width: 100%;" border="0" nobr="false">
 <tr>
 <td><h2>Klassenübersicht</h2><br>KlarAktiv-Tag 2022</td>
 <td style="text-align: right;"> <img src="../img/logo_klaraktiv.jpg" width= "150"> </td>
@@ -32,7 +32,7 @@ $stationtable .= '
 <li>Bitte weisen Sie selbstständig den individuellen Schülernummern Ihre Schülerinnen und Schüler aus der Klasse zu.</li>
 <li>Melden Sie der Leitung am Druchführungstag ggf. abwesende bzw. erkrankte Schülerinnen und Schüler.</li>
 </ul>
-<table cellpadding="4" cellspacing="0" style="width: 100%;" border="1" nobr="true">
+<table cellpadding="4" cellspacing="0" style="width: 100%;" border="1" nobr="flase">
  <tr style="background-color: #cccccc; padding:4px;">
  <td style="padding:5px;"><b>Nr.</b></td>
  <td style="padding:5px;"><b>Schülernummer</b></td>
@@ -45,7 +45,7 @@ foreach($dataquery as $row) {
 
 $stationtable .='
 
- <tr nobr="true">
+ <tr nobr="false">
  <td style="text-align: left">'.$i.'<br></td>
 <td style="text-align: left">'.$row['studentnumber'].'<br></td>
 <td style="text-align: left">'.$row['classname'].'<br></td>
@@ -77,7 +77,7 @@ foreach($dataquery as $row) {
    $stationtable .= '
    <div style="page-break-before:always">
    
-<table cellpadding="5" cellspacing="0" style="width: 100%"; border ="0">
+<table cellpadding="5" cellspacing="0" style="width: 100%"; border ="0" nobr="flase">
  
  <tr>
  <td style="font-size:1.3em; font-weight: bold;">
@@ -155,8 +155,8 @@ $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // Dokumenteninformationen
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('Klara-Oppenheimer-Schule');
-$pdf->SetTitle('Title');
-$pdf->SetSubject('Thema');
+$pdf->SetTitle('KlaraktivTag-Klassenliste');
+$pdf->SetSubject('Laufzettel der Klassen');
  
  
 // Header und Footer Informationen
@@ -193,7 +193,7 @@ $pdf->writeHTML($stationtable, true, false, true, false, '');
  
 //Variante 1: PDF direkt an den Benutzer senden:
 ob_end_clean();
-$pdf->Output('KlarAktiv-2022.pdf', 'D');
+$pdf->Output('KlarAktiv-2022_'.$classname.'.pdf', 'D');
  
 
 //Variante 2: PDF im Verzeichnis abspeichern:

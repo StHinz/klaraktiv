@@ -178,6 +178,14 @@ class selectcontroller {
         return $getStationStatus;
 
     }
+
+    public function getStudentsThroughDay() {
+        
+        $getStudentsThroughDay = $this->db->getRows("");
+        return $getStudentsThroughDay;
+
+
+    }
 }
 
 ?> 
