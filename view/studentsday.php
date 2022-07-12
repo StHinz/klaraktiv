@@ -199,10 +199,10 @@ echo "
 
 foreach ($getStudentsDay as $row) {
     echo "<tr>";
-    echo "<td>".$row['student.studentnumber']."</td>";
-    echo "<td>".$row['class.classname']."</td>";
-    echo "<td>".$row['station.stationname']."</td>";
-    echo "<td>".$row['student_station.stationtime']."</td>"; 
+    echo "<td>".$row['studentnumber']."</td>";
+    echo "<td>".$row['classname']."</td>";
+    echo "<td>".$row['stationname']."</td>";
+    echo "<td>".$row['stationtime']."</td>"; 
   
 
 }
